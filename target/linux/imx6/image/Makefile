@@ -120,8 +120,8 @@ endef
 KERNEL_LOADADDR=0x10008000
 
 define Device/Default
-  PROFILES := Generic
-  FILESYSTEMS := squashfs ext4
+  PROFILES := imx6ull
+  FILESYSTEMS := ext4
   KERNEL_INSTALL := 1
   KERNEL_SUFFIX := -uImage
   KERNEL_NAME := zImage
@@ -129,6 +129,14 @@ define Device/Default
   KERNEL := kernel-bin | uImage none
   IMAGES :=
 endef
+
+define Device/netping
+  DEVICE_TITLE := netping-imx6ull
+  DEVICE_VENDOR := NetPing
+  DEVICE_DTS := ev-imx6ul-nano-mbx
+endef
+
+TARGET_DEVICES += netping
 
 define Device/ventana
   DEVICE_VENDOR := Gateworks
@@ -178,7 +186,7 @@ define Device/ventana
   BLOCKSIZE := 128k
   MKUBIFS_OPTS := -m $$(PAGESIZE) -e 124KiB
 endef
-TARGET_DEVICES += ventana
+#TARGET_DEVICES += ventana
 
 define Device/ventana-large
   $(Device/ventana)
@@ -191,14 +199,14 @@ define Device/ventana-large
   BLOCKSIZE := 256k
   MKUBIFS_OPTS := -m $$(PAGESIZE) -e 248KiB
 endef
-TARGET_DEVICES += ventana-large
+#TARGET_DEVICES += ventana-large
 
 define Device/wandboard
   DEVICE_VENDOR := Wandboard
   DEVICE_MODEL := Dual
   DEVICE_DTS := imx6dl-wandboard
 endef
-TARGET_DEVICES += wandboard
+#TARGET_DEVICES += wandboard
 
 define Device/cubox-i
   DEVICE_VENDOR := SolidRun
@@ -214,7 +222,7 @@ define Device/cubox-i
   IMAGE/combined.bin := append-rootfs | pad-extra 128k | imx6-sdcard
   IMAGE/dtb := install-dtb
 endef
-TARGET_DEVICES += cubox-i
+#TARGET_DEVICES += cubox-i
 
 define Device/apalis
   DEVICE_VENDOR := Toradex
@@ -238,6 +246,6 @@ define Device/apalis
   ARTIFACTS := recovery.scr
   ARTIFACT/recovery.scr := recovery-scr
 endef
-TARGET_DEVICES += apalis
+#TARGET_DEVICES += apalis
 
 $(eval $(call BuildImage))

@@ -1,0 +1,513 @@
+ /*
+ * Copyright (C) 2015 Freescale Semiconductor, Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+ /*
+  * EV-iMX6UL-NANO module
+  * www.evodbg.com
+  * contact  r.sariev@evodbg.com
+  */ 
+
+/dts-v1/;
+
+#include <dt-bindings/input/input.h>
+#include "imx6ull.dtsi"
+
+//#define DUAL_ETH
+#define nanoRouter
+
+#define M1_RS485 (UART2)
+//#define M1_CAN2
+//#define M1_GPIO
+
+#define M2_RS485 (UART3)
+//#define M2_CAN1
+//#define M2_GPIO
+
+#define M3_RS485 (UART5)
+//#define M3_CAN2
+//#define M3_GPIO
+
+
+
+
+
+
+/ {
+	model = "Freescale i.MX6 UltraLite 14x14 EVK Board";
+	compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
+
+	chosen {
+		stdout-path = &uart1;
+	};
+
+	memory {
+		reg = <0x80000000 0x20000000>;
+	};
+
+	reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		linux,cma {
+			compatible = "shared-dma-pool";
+			reusable;
+			size = <0x14000000>;
+			linux,cma-default;
+		};
+	};
+
+	regulators {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		reg_can_3v3: regulator@0 {
+			compatible = "regulator-fixed";
+			reg = <0>;
+			regulator-name = "can-3v3";
+			regulator-min-microvolt = <3300000>;
+			regulator-max-microvolt = <3300000>;
+			regulator-always-on;
+		};
+
+		reg_sd1_vmmc: regulator@1 {
+			compatible = "regulator-fixed";
+			regulator-name = "VSD_3V3";
+			regulator-min-microvolt = <3300000>;
+			regulator-max-microvolt = <3300000>;
+			regulator-always-on;
+		};
+		
+		reg_gpio_dvfs: regulator-gpio {
+                        compatible = "regulator-fixed";
+                        regulator-min-microvolt = <1400000>;
+                        regulator-max-microvolt = <1400000>;
+                        regulator-name = "gpio_dvfs";
+                        regulator-always-on;
+                };
+
+		reg_usb1_vbus: regulator@2 {
+			reg = <2>;
+			compatible = "regulator-fixed";
+			regulator-name = "usb1_vbus";
+			regulator-min-microvolt = <5000000>;
+			regulator-max-microvolt = <5000000>;
+
+			pinctrl-names = "default";
+			pinctrl-0 = <&pinctrl_usb1vbus_gpio>;
+
+			gpio = <&gpio3 10 1>;
+			enable-active-high;
+			regulator-boot-on;
+			regulator-always-on;
+		};
+
+	};
+
+	leds {
+	compatible = "gpio-leds";
+	heartbeat {
+		    label = "heartbeat-led";
+		    gpios = <&gpio4 28 0>;
+		    linux,default-trigger = "heartbeat";
+	};    
+	mmc0 {
+		    label = "mmc0-led";
+            	    gpios = <&gpio4 27 0>;
+		    default-state = "off";
+                    linux,default-trigger = "mmc0";
+        };
+	wifi {
+                    label = "wifi-led";
+                    gpios = <&gpio4 26 0>; 
+                    default-state = "off";
+		    linux,default-trigger = "mmc1"; 
+        };
+
+    };
+};
+
+&cpu0 {
+	arm-supply = <&reg_arm>;
+	soc-supply = <&reg_soc>;
+	dc-supply = <&reg_gpio_dvfs>;
+};
+
+&clks {
+	assigned-clocks = <&clks IMX6UL_CLK_PLL4_AUDIO_DIV>;
+	assigned-clock-rates = <786432000>;
+};
+
+&csi {
+	status = "disabled";
+};
+
+&uart1 {					// DUAURT console
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart1>;
+	status = "okay";
+};
+
+
+
+#ifdef M1_RS485
+&uart2 { 					// RS485 NanoRouter
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart2>;
+	uart-has-rtscts;
+	rts-gpios = <&gpio1 22 GPIO_ACTIVE_LOW>;
+	linux,rs485-enabled-at-boot-time;
+	status = "okay";
+};
+#endif
+
+#ifdef M2_RS485
+&uart3 {					// RS485 NanoRouter
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart3>;
+	uart-has-rtscts;
+	rts-gpios = <&gpio1 26 GPIO_ACTIVE_LOW>;
+	linux,rs485-enabled-at-boot-time;
+	status = "okay";
+};
+#endif
+
+&uart4 {					// SIM800C modem
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart4>;
+	status = "okay";
+};
+
+/* Use as GPIO for NanoRouter */
+
+#ifdef M3_RS485
+&uart5 {					// RS485 transiver 
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart5>;
+	fsl,uart-has-rtscts;
+	status = "okay";
+};
+#endif
+
+&fec1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_enet1>;
+	phy-mode = "rmii";
+	phy-reset-gpios = <&gpio5 1 1>;
+	phy-reset-duration = <100>;
+	phy-handle = <&ethphy0>;
+	status = "okay";
+
+	mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		ethphy0: ethernet-phy@0 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <0>;
+		};
+	};
+};
+
+
+#if defined(M2_CAN1) || defined(M3_CAN1)
+&flexcan1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_flexcan1>;
+	xceiver-supply = <&reg_can_3v3>;
+	status = "okay";
+};
+#endif
+
+#ifdef M2_CAN2
+/* flexcan2 muxed with UART2 RTS/CTS pins */
+&flexcan2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_flexcan2>;
+	xceiver-supply = <&reg_can_3v3>;
+	status = "okay";
+;
+#endif
+
+
+&gpc {
+	fsl,cpu_pupscr_sw2iso = <0x1>;
+	fsl,cpu_pupscr_sw = <0x0>;
+	fsl,cpu_pdnscr_iso2sw = <0x1>;
+	fsl,cpu_pdnscr_iso = <0x1>;
+	fsl,ldo-bypass = <0>; /* DCDC, ldo-enable */
+};
+
+
+&i2c2 {
+	clock_frequency = <100000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c2>;
+	status = "okay";
+};
+
+
+
+
+&iomuxc {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_hog_1>;
+	imx6ul-evk {
+		pinctrl_hog_1: hoggrp-1 {
+			fsl,pins = <
+
+				MX6UL_PAD_UART1_RTS_B__GPIO1_IO19       0x17059    /* SD1 CD */
+				MX6UL_PAD_CSI_DATA04__GPIO4_IO25	0x1b0b0	   /* SIM800 Powerkey NanoRouter*/
+				MX6UL_PAD_CSI_DATA06__GPIO4_IO27	0x1b0b0    /* LED2 MMC led NanoRouter*/
+				MX6UL_PAD_CSI_DATA07__GPIO4_IO28	0x1b0b0    /* LED1 Heartbeat  NanoRouter*/
+				MX6UL_PAD_CSI_DATA05__GPIO4_IO26	0x1b0b0    /* LED3 User LED NanoRouter*/ 
+//				MX6UL_PAD_LCD_DATA05__GPIO3_IO10  	0x1b0b0	   /* USB0 Power Enabled Switch NanoRouter*/
+
+#if defined(M2_CAN_GPIO) || defined(M3_CAN_GPIO)
+				MX6UL_PAD_LCD_DATA09__GPIO3_IO14	0x1b0b0	
+				MX6UL_PAD_LCD_DATA08__GPIO3_IO13	0x1b0b0
+#endif
+
+#ifdef M1_GPIO_UART
+				MX6UL_PAD_UART2_RX_DATA__GPIO1_IO21	0x1b0b0		/* UART2_RX	*/
+				MX6UL_PAD_UART2_TX_DATA__GPIO1_IO20	0x1b0b0		/* UART2_TX	*/
+#endif
+
+#ifdef M2_GPIO_UART
+				MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0		/* UART3_RX	*/
+				MX6UL_PAD_UART3_TX_DATA__GPIO1_IO24	0x1b0b0		/* UART3_TX	*/
+#endif
+
+#ifdef M3_GPIO_UART
+				MX6UL_PAD_CSI_DATA01__GPIO4_IO22	0x1b0b0 	/* UART5_RX	*/
+				MX6UL_PAD_CSI_DATA00__GPIO4_IO21	0x1b0b0		/* UART5_TX	*/
+#endif
+
+
+
+
+			>;
+		};
+
+
+
+		pinctrl_enet1: enet1grp {
+			fsl,pins = <
+				MX6UL_PAD_GPIO1_IO07__ENET1_MDC		0x1b0b0
+				MX6UL_PAD_GPIO1_IO06__ENET1_MDIO	0x1b0b0
+				MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x1b0b0
+				MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x1b0b0
+				MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00	0x1b0b0
+				MX6UL_PAD_ENET1_RX_DATA1__ENET1_RDATA01	0x1b0b0
+				MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN	0x1b0b0
+				MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00	0x1b0b0
+				MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01	0x1b0b0
+				MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1	0x4001b031
+			>;
+		};
+
+		pinctrl_flexcan1: flexcan1grp{
+			fsl,pins = <
+				MX6UL_PAD_LCD_DATA09__FLEXCAN1_RX	0x1b020
+				MX6UL_PAD_LCD_DATA08__FLEXCAN1_TX	0x1b020
+			>;
+		};
+
+		pinctrl_flexcan2: flexcan2grp{
+			fsl,pins = <
+//				MX6UL_PAD_UART2_RTS_B__FLEXCAN2_RX	0x1b020
+//				MX6UL_PAD_UART2_CTS_B__FLEXCAN2_TX	0x1b020
+			>;
+		};
+
+		pinctrl_i2c1: i2c1grp {
+			fsl,pins = <
+				MX6UL_PAD_CSI_PIXCLK__I2C1_SCL 		0x4001b8b0
+				MX6UL_PAD_CSI_MCLK__I2C1_SDA 		0x4001b8b0
+			>;
+		};
+
+		pinctrl_i2c2: i2c2grp {
+			fsl,pins = <
+				MX6UL_PAD_CSI_HSYNC__I2C2_SCL 		0x4001b8b0
+				MX6UL_PAD_CSI_VSYNC__I2C2_SDA 		0x4001b8b0
+			>;
+		};
+
+		pinctrl_pwm1: pwm1grp {
+			fsl,pins = <
+				MX6UL_PAD_LCD_DATA00__PWM1_OUT   	0x110b0
+			>;
+		};
+
+		pinctrl_pwm2: pwm2grp {
+			fsl,pins = <
+				MX6UL_PAD_LCD_DATA01__PWM2_OUT		0x110b0
+			>;
+		};
+
+		pinctrl_ecspi1: spi1grp {
+			fsl,pins = <
+				MX6UL_PAD_CSI_DATA04__ECSPI1_SCLK	0x1b0b1
+				MX6UL_PAD_CSI_DATA06__ECSPI1_MOSI	0x1b0b1
+				MX6UL_PAD_CSI_DATA07__ECSPI1_MISO	0x1b0b1
+				MX6UL_PAD_CSI_DATA05__ECSPI1_SS0	0x1b0b1
+			>;
+		};
+
+		pinctrl_uart1: uart1grp {
+			fsl,pins = <
+				MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX 0x1b0b1
+				MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX 0x1b0b15
+			>;
+		};
+
+		pinctrl_uart2: uart2grp {
+			fsl,pins = <
+				MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
+				MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1
+//				MX6UL_PAD_UART2_CTS_B__UART2_DCE_CTS    0x1b0b1
+				MX6UL_PAD_UART2_CTS_B__GPIO1_IO22	0x1b0b1
+			>;
+		};
+
+		pinctrl_uart3: uart3grp {
+			fsl,pins = <
+				MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
+				MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b0b1
+//				MX6UL_PAD_UART3_CTS_B__UART3_DCE_CTS	0x1b0b1
+				MX6UL_PAD_UART3_CTS_B__GPIO1_IO26	0x1b0b1
+			>;
+		};
+
+		pinctrl_uart4: uart4grp {
+			fsl,pins = <
+				MX6UL_PAD_UART4_TX_DATA__UART4_DCE_TX	0x1b0b1
+				MX6UL_PAD_UART4_RX_DATA__UART4_DCE_RX	0x1b0b1
+			>;
+		};
+
+		pinctrl_uart5: uart5grp {
+			fsl,pins = <
+				MX6UL_PAD_CSI_DATA00__UART5_DCE_TX	0x1b0b1
+				MX6UL_PAD_CSI_DATA01__UART5_DCE_RX	0x1b0b1
+				MX6UL_PAD_CSI_DATA02__UART5_DCE_RTS	0x1b0b1
+			>;
+		};
+
+		pinctrl_usdhc1: usdhc1grp {
+			fsl,pins = <
+				MX6UL_PAD_SD1_CMD__USDHC1_CMD     0x17059
+				MX6UL_PAD_SD1_CLK__USDHC1_CLK     0x10071
+				MX6UL_PAD_SD1_DATA0__USDHC1_DATA0 0x17059
+				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1 0x17059
+				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2 0x17059
+				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3 0x17059
+			>;
+		};
+
+		pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
+			fsl,pins = <
+				MX6UL_PAD_SD1_CMD__USDHC1_CMD     0x170b9
+				MX6UL_PAD_SD1_CLK__USDHC1_CLK     0x100b9
+				MX6UL_PAD_SD1_DATA0__USDHC1_DATA0 0x170b9
+				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1 0x170b9
+				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2 0x170b9
+				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3 0x170b9
+			>;
+		};
+
+		pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
+			fsl,pins = <
+				MX6UL_PAD_SD1_CMD__USDHC1_CMD     0x170f9
+				MX6UL_PAD_SD1_CLK__USDHC1_CLK     0x100f9
+				MX6UL_PAD_SD1_DATA0__USDHC1_DATA0 0x170f9
+				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1 0x170f9
+				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2 0x170f9
+				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3 0x170f9
+			>;
+		};
+
+		pinctrl_usdhc2: usdhc2grp {
+			fsl,pins = <
+				MX6UL_PAD_NAND_RE_B__USDHC2_CLK     0x10069
+				MX6UL_PAD_NAND_WE_B__USDHC2_CMD     0x17059
+				MX6UL_PAD_NAND_DATA00__USDHC2_DATA0 0x17059
+				MX6UL_PAD_NAND_DATA01__USDHC2_DATA1 0x17059
+				MX6UL_PAD_NAND_DATA02__USDHC2_DATA2 0x17059
+				MX6UL_PAD_NAND_DATA03__USDHC2_DATA3 0x17059
+			>;
+		};
+
+		pinctrl_wdog: wdoggrp {
+			fsl,pins = <
+				MX6UL_PAD_LCD_RESET__WDOG1_WDOG_ANY    0x30b0
+			>;
+		};
+
+		pinctrl_usb1vbus_gpio: usb1vbusgrp {
+			fsl,pins = <
+				MX6UL_PAD_LCD_DATA05__GPIO3_IO10	0x30b0
+	>;
+    };
+	};
+};
+
+&usbotg1 {
+	vbus-supply = <&reg_usb1_vbus>;
+//	dr_mode = "otg";
+	dr_mode = "host";
+	srp-disable;
+	hnp-disable;
+	adp-disable;
+	disable-over-current;
+	status = "okay";
+};
+
+&usbotg2 {
+	dr_mode = "host";
+	disable-over-current;
+	status = "okay";
+};
+
+&usbphy1 {
+	tx-d-cal = <0x5>;
+};
+
+&usbphy2 {
+	tx-d-cal = <0x5>;
+};
+
+&usdhc1 {
+        pinctrl-names = "default", "state_100mhz", "state_200mhz";
+        pinctrl-0 = <&pinctrl_usdhc1>;
+        pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
+        pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
+        cd-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
+        keep-power-in-suspend;
+        enable-sdio-wakeup;
+        vmmc-supply = <&reg_sd1_vmmc>;
+        status = "okay";
+};
+
+&usdhc2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_usdhc2>;
+	no-1-8-v;
+	non-removable;
+	keep-power-in-suspend;
+	enable-sdio-wakeup;
+	status = "okay";
+};
+
+&wdog1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_wdog>;
+	fsl,wdog_b;
+};

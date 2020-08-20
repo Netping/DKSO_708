@@ -9,12 +9,13 @@ include $(TOPDIR)/rules.mk
 ARCH:=arm
 BOARD:=imx6
 BOARDNAME:=Freescale i.MX 6
-FEATURES:=audio display fpu gpio pcie rtc usb usbgadget squashfs targz nand ubifs boot-part rootfs-part
-CPU_TYPE:=cortex-a9
-CPU_SUBTYPE:=neon
+FEATURES:=fpu gpio rtc usb usbgadget targz boot-part rootfs-part
+CPU_TYPE:=cortex-a7
+CPU_SUBTYPE:=neon-vfpv4
 
-KERNEL_PATCHVER:=5.4
-KERNEL_TESTING_PATCHVER:=5.4
+KERNEL_PATCHVER:=4.9
+LINUX_VERSION=4.9
+#KERNEL_TESTING_PATCHVER:=5.4
 
 include $(INCLUDE_DIR)/target.mk
 
