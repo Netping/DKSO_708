@@ -6,10 +6,8 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/np-init-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-#PKG_SOURCE:=np_init.sh
-#PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/Netping/DKST708_np_init/files/5184666/
-PKG_HASH:=710b7e49ceea373f9e34b7f238346692f8e8ae68f7bccc7ac07edf21a66b6d67
+PKG_SOURCE_URL:=https://github.com/Netping/DKST708_np_init/files/5197920/
+PKG_HASH:=943e8ff62dfd13492be29afc1276370150b71066d25f4754e4114301a24a9dff
 
 
 PKG_INSTALL:=1
@@ -31,6 +29,8 @@ endef
 define Package/np-init/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/np_init.sh $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/np_init $(1)/etc/init.d/
 endef
 
 $(eval $(call BuildPackage,np-init))
