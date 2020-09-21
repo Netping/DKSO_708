@@ -15,11 +15,12 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/np-init
-  SECTION:=utils
-  CATEGORY:=Utilities
-  TITLE:=np_init.sh is a simple boot time initialization script for user partition
+  SECTION:=netping
+  CATEGORY:=NetPing
+  SUBMENU:=Utils and boot scripts
+  TITLE:=simple boot time initialization script for user partition
   URL:=https://github.com/Netping/DKST708_np_init
-  MAINTAINER:=Michael Sadikov <miksadikov@gmail.com>
+  MAINTAINER:=Michael Sadikov <info@netping.ru>
 endef
 
 define Package/np-init/description

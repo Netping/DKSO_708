@@ -15,9 +15,10 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/np-version
-  SECTION:=utils
-  CATEGORY:=Utilities
-  TITLE:=np-version
+  SECTION:=netping
+  CATEGORY:=NetPing
+  SUBMENU:=Utils and boot scripts
+  TITLE:=display device name, firmware version and build time
   URL:=https://github.com/Netping/DKST708_np_version
   MAINTAINER:=Mikhail Sadikov <info@netping.ru>
 endef

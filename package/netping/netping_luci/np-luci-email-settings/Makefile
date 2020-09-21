@@ -15,9 +15,10 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 define Package/np-luci-email-settings
-  SECTION:=utils
-  CATEGORY:=Utilities
-  TITLE:=np-luci-email-settings
+  SECTION:=netping
+  CATEGORY:=NetPing
+  SUBMENU:=NetPing LuCI
+  TITLE:=LuCI interface expansion module
   URL:=https://github.com/Netping/DKST708_np_luci_email_settings
   MAINTAINER:=Alexander Timofeev <info@netping.ru>
 endef
