@@ -7,6 +7,20 @@
 
 This is the buildsystem for the OpenWrt Linux distribution.
 
+Note:
+after cloning the repository, first of all, run command: 
+
+make menuconfg
+
+and go to menu: 
+
+Advanced configuration options (for developers)  ---> Use external kernel tree 
+
+and specify full absolute path to linux kernel tree inside directory with cloned OpenWrt (target/linux/imx6/linux-kernel-4.9).
+For example: /path/to/OpenWrtDKSF_708/target/linux/imx6/linux-kernel-4.9
+
+
+
 To build your own firmware you need a Linux, BSD or MacOSX system (case
 sensitive filesystem required). Cygwin is unsupported because of the lack
 of a case sensitive file system.
