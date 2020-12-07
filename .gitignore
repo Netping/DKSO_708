@@ -9,11 +9,11 @@
 /staging_dir
 /tmp
 /logs
-/feeds
+#/feeds
 /feeds.conf
 /files
 /overlay
-/package/feeds
+#/package/feeds
 /package/openwrt-packages
 /*.patch
 key-build*
