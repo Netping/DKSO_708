@@ -4,7 +4,8 @@
 #src-git telephony https://git.openwrt.org/feed/telephony.git
 
 src-git packages https://github.com/openwrt/packages.git
-src-git luci https://github.com/openwrt/luci.git
+#src-git luci https://github.com/openwrt/luci.git
+src-git luci https://github.com/Netping/DKSF708_luci.git
 src-git routing https://github.com/openwrt-routing/packages.git
 #src-git telephony https://github.com/openwrt-telephony/packages.git
 
