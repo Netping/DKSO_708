@@ -6,8 +6,8 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/np-python-deps-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/Netping/dksf708_python_deps/files/6611868/
-PKG_HASH:=b790becba7ceb409868a3ce5acb82836affc2a984484480b80eeb4b840e2d8d8
+PKG_SOURCE_URL:=https://github.com/Netping/dksf708_python_deps/files/6618899/
+PKG_HASH:=9fb00853abea8b0e23000da5a0d3f31f71fe6ed31b0783dc36cb8d5b30ea681a
 
 
 PKG_INSTALL:=1
@@ -55,6 +55,20 @@ define Package/np-python-deps/install
 	cp -r $(PKG_BUILD_DIR)/pysmi/* $(1)/usr/lib/python3.7/site-packages/pysmi
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/pysmi-0.3.4.dist-info
 	cp -r  $(PKG_BUILD_DIR)/pysmi-0.3.4.dist-info/* $(1)/usr/lib/python3.7/site-packages/pysmi-0.3.4.dist-info
+
+	 mkdir -p $(1)/usr/lib/python3.7/site-packages/pysnmp
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/pysnmp-4.4.12.dist-info
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/pysnmp
+	cp -r $(PKG_BUILD_DIR)/pysnmp/* $(1)/usr/lib/python3.7/site-packages/pysnmp
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/pysnmp-4.4.12.dist-info
+	cp -r  $(PKG_BUILD_DIR)/pysnmp-4.4.12.dist-info/* $(1)/usr/lib/python3.7/site-packages/pysnmp-4.4.12.dist-info
+
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/Cryptodome
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/pycryptodomex-3.10.1.dist-info
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/Cryptodome
+	cp -r $(PKG_BUILD_DIR)/Cryptodome/* $(1)/usr/lib/python3.7/site-packages/Cryptodome
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/pycryptodomex-3.10.1.dist-info
+	cp -r  $(PKG_BUILD_DIR)/pycryptodomex-3.10.1.dist-info/* $(1)/usr/lib/python3.7/site-packages/pycryptodomex-3.10.1.dist-info
 endef
 
 $(eval $(call BuildPackage,np-python-deps))
