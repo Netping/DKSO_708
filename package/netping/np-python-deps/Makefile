@@ -1,13 +1,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=np-python-deps
-PKG_VERSION:=1.0.1
+PKG_VERSION:=1.1.0
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/np-python-deps-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/Netping/dksf708_python_deps/files/6815732/
-PKG_HASH:=b300b1d4e21e2434f313226056c3f9c817050acc78a8fb4199eb99a323f36b52
+PKG_SOURCE_URL:=https://github.com/Netping/dksf708_python_deps/files/6982729/
+PKG_HASH:=362226a3d36633d0fb85573d05d6c404a2320326d434afe209ed0c71fe6f43f6
 
 
 PKG_INSTALL:=1
@@ -76,6 +76,41 @@ define Package/np-python-deps/install
 	cp -r $(PKG_BUILD_DIR)/pythonping/* $(1)/usr/lib/python3.7/site-packages/pythonping
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/pythonping-1.1.0.dist-info
 	cp -r  $(PKG_BUILD_DIR)/pythonping-1.1.0.dist-info/* $(1)/usr/lib/python3.7/site-packages/pythonping-1.1.0.dist-info
+
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/urllib3
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/urllib3-1.26.6.dist-info
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/urllib3
+	cp -r $(PKG_BUILD_DIR)/urllib3/* $(1)/usr/lib/python3.7/site-packages/urllib3
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/urllib3-1.26.6.dist-info
+	cp -r  $(PKG_BUILD_DIR)/urllib3-1.26.6.dist-info/* $(1)/usr/lib/python3.7/site-packages/urllib3-1.26.6.dist-info
+
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/charset_normalizer
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/charset_normalizer-2.0.4.dist-info
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/charset_normalizer
+	cp -r $(PKG_BUILD_DIR)/charset_normalizer/* $(1)/usr/lib/python3.7/site-packages/charset_normalizer
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/charset_normalizer-2.0.4.dist-info
+	cp -r  $(PKG_BUILD_DIR)/charset_normalizer-2.0.4.dist-info/* $(1)/usr/lib/python3.7/site-packages/charset_normalizer-2.0.4.dist-info
+
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/idna
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/idna-3.2.dist-info
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/idna
+	cp -r $(PKG_BUILD_DIR)/idna/* $(1)/usr/lib/python3.7/site-packages/idna
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/idna-3.2.dist-info
+	cp -r  $(PKG_BUILD_DIR)/idna-3.2.dist-info/* $(1)/usr/lib/python3.7/site-packages/idna-3.2.dist-info
+
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/certifi
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/certifi-2021.5.30.dist-info
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/certifi
+	cp -r $(PKG_BUILD_DIR)/certifi/* $(1)/usr/lib/python3.7/site-packages/certifi
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/certifi-2021.5.30.dist-info
+	cp -r  $(PKG_BUILD_DIR)/certifi-2021.5.30.dist-info/* $(1)/usr/lib/python3.7/site-packages/certifi-2021.5.30.dist-info
+
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/requests
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/requests-2.26.0.dist-info
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/requests
+	cp -r $(PKG_BUILD_DIR)/requests/* $(1)/usr/lib/python3.7/site-packages/requests
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/requests-2.26.0.dist-info
+	cp -r  $(PKG_BUILD_DIR)/requests-2.26.0.dist-info/* $(1)/usr/lib/python3.7/site-packages/requests-2.26.0.dist-info
 endef
 
 $(eval $(call BuildPackage,np-python-deps))
