@@ -119,6 +119,10 @@ imx6_board_detect() {
 		name="wandboard"
 		;;
 
+	"Evodbg i.MX6ULL module")
+		name="netping"
+		;;
+
 	*)
 		name="generic"
 		;;

@@ -15,6 +15,9 @@ get_fs_type() {
 	"68737173")
 		echo "squashfs"
 		;;
+	"1f8b"*)
+		echo "gzip"
+		;;
 	*)
 		echo "unknown"
 		;;

@@ -30,6 +30,24 @@ apalis_do_upgrade() {
 	umount /boot
 }
 
+netping_do_upgrade() {
+	mkdir -p /boot
+	[ -f /boot/uImage ] || {
+		mount -o rw,noatime /dev/mmcblk1p1 /boot > /dev/null
+	}
+	get_image "$1" | tar Oxf - sysupgrade-netping/kernel > /boot/uImage
+	sync
+	umount /boot
+
+	mkdir /rootfs
+	mount -o rw,noatime /dev/mmcblk1p2 /rootfs > /dev/null
+	get_image "$1" | tar Oxf - sysupgrade-netping/root.tar.gz | tar xzf - -C /rootfs
+	sync
+	umount /rootfs
+}
+
+
+
 platform_check_image() {
 	local board=$(board_name)
 
@@ -40,6 +58,9 @@ platform_check_image() {
 	*gw5*)
 		nand_do_platform_check $board $1
 		return $?;
+		;;
+	netping)
+		return 0
 		;;
 	esac
 
@@ -52,10 +73,13 @@ platform_do_upgrade() {
 
 	case "$board" in
 	apalis*)
-		apalis_do_upgrade "$1"
+		  apalis_do_upgrade "$1"
 		;;
 	*gw5*)
 		nand_do_upgrade "$1"
+		;;
+	netping)
+		netping_do_upgrade "$1"
 		;;
 	esac
 }

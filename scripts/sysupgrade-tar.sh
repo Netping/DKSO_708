@@ -60,6 +60,9 @@ if [ -n "${rootfs}" ]; then
 	"squashfs")
 		dd if="${rootfs}" of="${tmpdir}/sysupgrade-${board}/root" bs=1024 conv=sync
 		;;
+	"gzip")
+		cp "${rootfs}" "${tmpdir}/sysupgrade-${board}/root.tar.gz"
+		;;
 	*)
 		cp "${rootfs}" "${tmpdir}/sysupgrade-${board}/root"
 		;;

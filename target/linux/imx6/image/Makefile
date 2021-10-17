@@ -134,6 +134,11 @@ define Device/netping
   DEVICE_TITLE := netping-imx6ull
   DEVICE_VENDOR := NetPing
   DEVICE_DTS := ev-imx6ul-nano-mbx
+
+  IMAGES += sysupgrade.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar rootfs=$(BIN_DIR)/$(IMG_PREFIX)-imx6ull-rootfs.tar.gz | append-metadata
+
+  SUPPORTED_DEVICES := netping
 endef
 
 TARGET_DEVICES += netping
