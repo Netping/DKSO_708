@@ -2,12 +2,14 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME="owrt_email"
 PKG_VERSION=2.1.1
+PKG_REV:=a6c4931280a370fd11b0b8a20e070583d522241c
 PKG_RELEASE=16
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_email-$(PKG_VERSION)
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/Netping/OWRT_Email/files/7404905/
-PKG_HASH:=310980baff6accc42f01c62fb7e950d5f2dcbbca9da2c8b0751016ab4fed8dc7
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/Netping/OWRT_email.git
+PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
 
 PKG_INSTALL:=1
 
