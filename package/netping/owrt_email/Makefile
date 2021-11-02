@@ -22,6 +22,7 @@ define Package/owrt_email
   TITLE:=module for sending email notifications
   URL:=https://github.com/Netping/OWRT_Email
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>
+  DEPENDS:= +owrt_log +np-ubus-python
 endef
 
 define Package/owrt_email/description
