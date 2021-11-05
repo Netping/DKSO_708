@@ -22,7 +22,7 @@ define Package/owrt_log
   TITLE:=operation logging module
   URL:=https://github.com/Netping/OWRT_Log
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>
-  DEPENDS:=+np-ubus-python
+  DEPENDS:=+owrt-plib-ubus
 endef
 
 define Package/owrt_log/description
