@@ -3,9 +3,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dkso_708
-PKG_VERSION:=708.1.1
+PKG_VERSION:=708.1.2
 PKG_MAINTAINER:=Mikhail Sadikov <info@netping.ru>
-PKG_RELEASE:=2
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/dkso_708-$(PKG_VERSION)
 
@@ -27,6 +27,7 @@ endef
 define Build/Prepare
 	$(CP) opkg-keys/18e86236d041de40 $(PKG_BUILD_DIR)/
 	$(CP) opkg-keys/Makefile $(PKG_BUILD_DIR)/
+	$(CP) customfeeds.conf $(PKG_BUILD_DIR)/
 endef
 
 Build/Compile=
@@ -34,6 +35,8 @@ Build/Compile=
 define Package/dkso_708/install
 	$(INSTALL_DIR) $(1)/etc/opkg/keys/
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/18e86236d041de40 $(1)/etc/opkg/keys/
+	$(INSTALL_DIR) $(1)/etc/opkg/
+	cp $(PKG_BUILD_DIR)/customfeeds.conf $(1)/etc/opkg/
 endef
 
 $(eval $(call BuildPackage,dkso_708))
