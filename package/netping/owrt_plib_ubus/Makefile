@@ -2,13 +2,14 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owrt-plib-ubus
 PKG_VERSION:=0.1.1
+PKG_REV:=8652f449fd9c143251bd6f2b685aaafb29f0e0f8
 PKG_RELEASE:=2
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-ubus-$(PKG_VERSION)
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/Netping/OWRT-PLIB-UBUS/files/7590748/
-PKG_HASH:=3deeb41b64bf4c4a8bcfee2584c9152e3a440b750b9ed0b29702759b69cccc27
-
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/Netping/OWRT-PLIB-UBUS.git
+PKG_SOURCE_VERSION:=$(PKG_REV)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
 
 PKG_INSTALL:=1
 
