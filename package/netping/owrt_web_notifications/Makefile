@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_notifications"
 PKG_VERSION=1.2
-PKG_REV:=fa5c86d897f697a5754640dcaa8e5cb22f6deab9
+PKG_REV:=f2462a1932f68cb607fc64d81950efffa674d090
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_notifications-$(PKG_VERSION)
@@ -30,14 +30,14 @@ define Package/owrt_web_notifications/description
 endef
 
 MODULE_FILES_DIR:=/usr/lib/lua/luci
-CSS_FILES_DIR:=/www/luci-static
+STATIC_FILES:=htdocs/luci-static/resources/*
+STATIC_FILES_DIR:=/www/luci-static/resources/
 
 
 define Package/owrt_web_notifications/install
-	mkdir -p $(1)$(MODULE_FILES_DIR)
+	mkdir -p $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
 	cp -r $(PKG_BUILD_DIR)/luasrc/* $(1)$(MODULE_FILES_DIR)
-	mkdir -p $(1)$(CSS_FILES_DIR)
-	cp -r $(PKG_BUILD_DIR)/luci-static/* $(1)$(CSS_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(STATIC_FILES) $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
 endef
 
 $(eval $(call BuildPackage,owrt_web_notifications))

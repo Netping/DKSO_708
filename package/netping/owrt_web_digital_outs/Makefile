@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_digital_outs"
 PKG_VERSION=1.2
-PKG_REV:=156e6f4a755b66b7a3dda3394b01a2f29042fe00
+PKG_REV:=155de2fd2dadbc6bd5f8d320275fbd9e21130aaa
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_digital_outs-$(PKG_VERSION)
@@ -29,23 +29,15 @@ define Package/owrt_web_digital_outs/description
  Web interface for binary outputs control module
 endef
 
-CONTROLLER_SRC_DIR:=luasrc/controller
-CONTROLLER_DIR:=/usr/lib/lua/luci/controller
-MODEL_SRC_DIR:=luasrc/model
-MODEL_DIR:=/usr/lib/lua/luci/model
-VIEW_SRC_DIR:=luasrc/view
-VIEW_DIR:=/usr/lib/lua/luci/view
-RESOURCES_SRC_DIR:=luci-static/resources
-RESOURCES_DIR:=/www/luci-static/resources
+MODULE_FILES_DIR:=/usr/lib/lua/luci
+STATIC_FILES:=htdocs/luci-static/resources/*
+STATIC_FILES_DIR:=/www/luci-static/resources/
 
 
-define Package/owrt_web_digital_outs/install
-	mkdir -p $(1)$(CONTROLLER_DIR)
-	cp -r $(PKG_BUILD_DIR)/$(CONTROLLER_SRC_DIR)/* $(1)$(CONTROLLER_DIR)
-	mkdir -p $(1)$(MODEL_DIR)
-	cp -r $(PKG_BUILD_DIR)/$(MODEL_SRC_DIR)/* $(1)$(MODEL_DIR)
-	mkdir -p $(1)$(VIEW_DIR)
-	cp -r $(PKG_BUILD_DIR)/$(VIEW_SRC_DIR)/* $(1)$(VIEW_DIR)
-	mkdir -p $(1)$(RESOURCES_DIR)
-	cp -r $(PKG_BUILD_DIR)/$(RESOURCES_SRC_DIR)/* $(1)$(RESOURCES_DIR)
+define Package/owrt_web_notifications/install
+        mkdir -p $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
+        cp -r $(PKG_BUILD_DIR)/luasrc/* $(1)$(MODULE_FILES_DIR)
+        cp -r $(PKG_BUILD_DIR)/$(STATIC_FILES) $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
+endef
+
 $(eval $(call BuildPackage,owrt_web_digital_outs))
