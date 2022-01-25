@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_digital_outs"
-PKG_VERSION=1.2
+PKG_VERSION=0.1
 PKG_REV:=155de2fd2dadbc6bd5f8d320275fbd9e21130aaa
 PKG_RELEASE:=1
 
@@ -34,10 +34,10 @@ STATIC_FILES:=htdocs/luci-static/resources/*
 STATIC_FILES_DIR:=/www/luci-static/resources/
 
 
-define Package/owrt_web_notifications/install
-        mkdir -p $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
-        cp -r $(PKG_BUILD_DIR)/luasrc/* $(1)$(MODULE_FILES_DIR)
-        cp -r $(PKG_BUILD_DIR)/$(STATIC_FILES) $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
+define Package/owrt_web_digital_outs/install
+	mkdir -p $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/luasrc/* $(1)$(MODULE_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(STATIC_FILES) $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
 endef
 
 $(eval $(call BuildPackage,owrt_web_digital_outs))
