@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_netping_schema"
-PKG_VERSION=1.2
-PKG_REV:=0e55727c371b794ed343f876e3249bbf9f7c6ff9
+PKG_VERSION=0.1
+PKG_REV:=1d13120076dc7e55010c0d2e2bee6fb29071f355
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_netping_schema-$(PKG_VERSION)
@@ -19,35 +19,39 @@ define Package/owrt_web_netping_schema
   SECTION:=netping
   CATEGORY:=NetPing
   SUBMENU:=Utils and boot scripts
-  TITLE:=Netping OpenWrt web interface customization
+  TITLE:=web interface customization module
   URL:=https://github.com/Netping/OWRT-WEB-netping-schema
-  MAINTAINER:=Alexey L <info@netping.ru>
+  MAINTAINER:=Alexey Lozhanin <info@netping.ru>
   DEPENDS:=
 endef
 
 define Package/owrt_web_netping_schema/description
- Netping OpenWrt web interface customization
+ Web interface customization module
 endef
 
-CONTROLLER_SRC_DIR:=luasrc/controller
-CONTROLLER_DIR:=/usr/lib/lua/luci/controller
-MODEL_SRC_DIR:=luasrc/model
-MODEL_DIR:=/usr/lib/lua/luci/model
-VIEW_SRC_DIR:=luasrc/view
-VIEW_DIR:=/usr/lib/lua/luci/view
-RESOURCES_SRC_DIR:=luci-static/resources
-RESOURCES_DIR:=/www/luci-static/resources
-
+CONF_FILE:=
+CONF_DIR:=/etc/config/
+MODULE_NAME:=owrt_web_netping_schema
+UCI_DEF_SOURCE_DIR:=/root/etc/uci-defaults/
+LUCI_SOURCE_DIR:=/luasrc/
+LUCI_DIR:=/usr/lib/lua/luci/
+WWW_DIR:=/www/
+ETC_DIR:=/etc/
+HTDOCS_SOURCE_DIR:=/htdocs/
 
 define Package/owrt_web_netping_schema/install
-	mkdir -p $(1)$(CONTROLLER_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(CONTROLLER_SRC_DIR)/* $(1)$(CONTROLLER_DIR)
-	mkdir -p $(1)$(MODEL_DIR)
-        $(INSTALL_BIN) $(PKG_BUILD_DIR)/$(MODEL_SRC_DIR)/* $(1)$(MODEL_DIR)
-	mkdir -p $(1)$(VIEW_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(VIEW_SRC_DIR)/* $(1)$(VIEW_DIR)
-	mkdir -p $(1)$(VIEW_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RESOURCES_SRC_DIR)/* $(1)$(RESOURCES_DIR)
+	mkdir -p $(1)$(ETC_DIR)
+	mkdir -p $(1)$(WWW_DIR)
+	mkdir -p $(1)$(LUCI_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(UCI_DEF_SOURCE_DIR) $(1)$(ETC_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(HTDOCS_SOURCE_DIR)luci-static $(1)$(WWW_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(HTDOCS_SOURCE_DIR)cgi-bin $(1)$(WWW_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(LUCI_SOURCE_DIR)view $(1)$(LUCI_DIR)
+endef
+
+define Package/owrt_web_netping_schema/postinst
+#!/bin/sh
+chmod +x /www/cgi-bin/*.cgi
 endef
 
 $(eval $(call BuildPackage,owrt_web_netping_schema))
