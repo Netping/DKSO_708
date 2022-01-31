@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_netping_schema"
 PKG_VERSION=0.1
-PKG_REV:=1d13120076dc7e55010c0d2e2bee6fb29071f355
+PKG_REV:=c63ba7fad8a09cb5a9dc4ca2b1439c799284a0db
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_netping_schema-$(PKG_VERSION)
@@ -47,11 +47,6 @@ define Package/owrt_web_netping_schema/install
 	cp -r $(PKG_BUILD_DIR)/$(HTDOCS_SOURCE_DIR)luci-static $(1)$(WWW_DIR)
 	cp -r $(PKG_BUILD_DIR)/$(HTDOCS_SOURCE_DIR)cgi-bin $(1)$(WWW_DIR)
 	cp -r $(PKG_BUILD_DIR)/$(LUCI_SOURCE_DIR)view $(1)$(LUCI_DIR)
-endef
-
-define Package/owrt_web_netping_schema/postinst
-#!/bin/sh
-chmod +x /www/cgi-bin/*.cgi
 endef
 
 $(eval $(call BuildPackage,owrt_web_netping_schema))
