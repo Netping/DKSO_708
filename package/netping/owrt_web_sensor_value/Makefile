@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_sensor_value"
 PKG_VERSION=0.1
-PKG_REV:=c63ba7fad8a09cb5a9dc4ca2b1439c799284a0db
+PKG_REV:=eb3d55d29b14dde04d3b6924fb2ba76bc4331530
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_sensor_value-$(PKG_VERSION)
@@ -29,6 +29,7 @@ define Package/owrt_web_sensor_value/description
  Web interface for owrt_sensor_value module
 endef
 
+MODULE_NAME:=owrt_web_sensor_value
 MODULE_FILES_DIR:=/usr/lib/lua/luci/
 ACL_FILES_DIR:=/usr/share/rpcd/acl.d/
 STATIC_FILES_DIR:=/www/luci-static/resources/view/
