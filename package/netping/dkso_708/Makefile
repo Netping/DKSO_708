@@ -1,11 +1,11 @@
-# Copyright (C) 2021 NetPing
+# Copyright (C) 2021-2022 NetPing
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dkso_708
-PKG_VERSION:=708.1.2
+PKG_VERSION:=708.1.3
 PKG_MAINTAINER:=Mikhail Sadikov <info@netping.ru>
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/dkso_708-$(PKG_VERSION)
 
