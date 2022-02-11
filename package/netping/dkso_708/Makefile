@@ -5,7 +5,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=dkso_708
 PKG_VERSION:=708.1.3
 PKG_MAINTAINER:=Mikhail Sadikov <info@netping.ru>
-PKG_RELEASE:=5
+PKG_RELEASE:=6
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/dkso_708-$(PKG_VERSION)
 
@@ -21,7 +21,7 @@ define Package/dkso_708
 endef
 
 define Package/dkso_708/description
- dkso_708 - identification package for the image firmware version and hardware platform
+ Identification package for the image firmware version and hardware platform
 endef
 
 define Build/Prepare
@@ -29,6 +29,7 @@ define Build/Prepare
 	$(CP) opkg-keys/Makefile $(PKG_BUILD_DIR)/
 	$(CP) customfeeds.conf $(PKG_BUILD_DIR)/
 	$(CP) openwrt_version $(PKG_BUILD_DIR)/
+	$(CP) 95-dhcp-fallback $(PKG_BUILD_DIR)/
 endef
 
 Build/Compile=
@@ -40,6 +41,8 @@ define Package/dkso_708/install
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/18e86236d041de40 $(1)/etc/opkg/keys/
 	$(INSTALL_DIR) $(1)/etc/opkg/
 	cp $(PKG_BUILD_DIR)/customfeeds.conf $(1)/etc/opkg/
+	mkdir -p $(1)/etc/hotplug.d/iface/
+	cp $(PKG_BUILD_DIR)/95-dhcp-fallback $(1)/etc/hotplug.d/iface/
 endef
 
 $(eval $(call BuildPackage,dkso_708))

@@ -1,0 +1,23 @@
+NET_IF="lan"
+NET_DEV="eth0"
+NET_DELAY="30"
+UCI_IP="192.168.0.100"
+UCI_MASK="255.255.255.0"
+UCI_GW="192.168.0.1"
+UCI_DNS="192.168.0.1"
+. /lib/functions/network.sh
+network_flush_cache
+[ "${ACTION}" = "ifup" ] && [ "${DEVICE}" = "lo" ] && {
+    logger -t hotplug "Device: ${DEVICE} / Action: ${ACTION}"
+    sleep "${NET_DELAY}"
+    network_get_ipaddr NET_IP "${NET_IF}"
+    if [ -z "${NET_IP}" ]; then
+        logger -t hotplug "dhcp-fallback"
+        uci set network.${NET_IF}.ipaddr="${UCI_IP}"
+        uci set network.${NET_IF}.netmask="${UCI_MASK}"
+        uci set network.${NET_IF}.gateway="${UCI_GW}"
+        uci set network.${NET_IF}.dns="${UCI_DNS}"
+        ifconfig "${NET_DEV}" "${UCI_IP}" up
+    fi
+}
+
