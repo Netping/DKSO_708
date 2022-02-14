@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-ubus
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=Python bindings for ubus
   URL:=https://github.com/Netping/OWRT-PLIB-UBUS
   MAINTAINER:=Mikhail Sadikov <info@netping.ru>

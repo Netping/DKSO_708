@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_log
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=operation logging module
   URL:=https://github.com/Netping/OWRT_Log
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

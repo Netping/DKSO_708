@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_digital_inputs
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=input lines module
   URL:=https://github.com/Netping/OWRT-digital-inputs
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

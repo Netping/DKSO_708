@@ -16,7 +16,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/dkso_708
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=Identification package for the image firmware version and hardware platform
 endef
 

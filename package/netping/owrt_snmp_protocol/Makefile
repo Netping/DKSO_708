@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_snmp_protocol
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=SNMP protocol support module
   URL:=https://github.com/Netping/OWRT_SNMP_Protocol
   MAINTAINER:=Aleksandr Shenshin <info@netping.ru>

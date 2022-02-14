@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_plib_click
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=Composable command line interface toolkit
   URL:=https://github.com/Netping/OWRT-PLIB-click
   MAINTAINER:=Michael Sadikov <info@netping.ru>

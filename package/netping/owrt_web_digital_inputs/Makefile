@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_web_digital_inputs
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=web interface for owrt_digital_inputs module
   URL:=https://github.com/Netping/OWRT-WEB-digital-inputs
   MAINTAINER:=Alexander N <info@netping.ru>

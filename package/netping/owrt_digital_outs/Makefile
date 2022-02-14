@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_digital_outs
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=module for binary outputs control
   URL:=https://github.com/Netping/OWRT_Digital_outs
   MAINTAINER:=Aleksandr Shenshin <info@netping.ru>

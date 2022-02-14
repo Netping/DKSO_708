@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_web_pingers
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=web interface for owrt_pingers module
   URL:=https://github.com/Netping/OWRT-WEB-pingers
   MAINTAINER:=Alexey Lozhanin <info@netping.ru>

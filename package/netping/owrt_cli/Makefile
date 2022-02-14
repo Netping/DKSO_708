@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_cli
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=module for system information display
   URL:=https://github.com/Netping/OWRT_CLI
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

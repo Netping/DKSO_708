@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_pingers
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=external resource polling module
   URL:=https://github.com/Netping/OWRT-pingers
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

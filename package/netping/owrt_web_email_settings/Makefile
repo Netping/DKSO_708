@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_web_email_settings
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=web interface for email module
   URL:=https://github.com/Netping/OWRT-WEB-email-settings
   MAINTAINER:=Alexander Stepanov <info@netping.ru>

@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_web_sensor_value
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=web interface for owrt_sensor_value module
   URL:=https://github.com/Netping/OWRT-WEB-sensor-value
   MAINTAINER:=Alexander N <info@netping.ru>

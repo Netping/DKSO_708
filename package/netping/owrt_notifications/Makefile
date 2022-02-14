@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_notifications
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=notifications module
   URL:=https://github.com/Netping/OWRT_Notifications
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_plib_puresnmp
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=PureSNMP and dependencies
   URL:=https://github.com/Netping/OWRT_PLIB_PureSNMP
   MAINTAINER:=Michael Sadikov <info@netping.ru>

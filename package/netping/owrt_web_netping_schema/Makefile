@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_web_netping_schema
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=web interface customization module
   URL:=https://github.com/Netping/OWRT-WEB-netping-schema
   MAINTAINER:=Alexey Lozhanin <info@netping.ru>

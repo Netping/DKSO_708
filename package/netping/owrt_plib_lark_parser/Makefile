@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt_plib_lark_parser
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Utils and boot scripts
+  SUBMENU:=Base
   TITLE:=Lark is a parsing toolkit for Python
   URL:=https://github.com/Netping/OWRT-PLIB-Lark-parser
   MAINTAINER:=Michael Sadikov <info@netping.ru>
