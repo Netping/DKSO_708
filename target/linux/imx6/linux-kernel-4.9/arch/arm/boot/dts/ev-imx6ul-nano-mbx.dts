@@ -265,13 +265,13 @@
 };
 
 
-//&i2c1 {
-//	clock-frequency = <100000>;
-//	pinctrl-names = "default";
-//	pinctrl-0 = <&pinctrl_i2c1>;
-//	status = "okay";
-//
-//};
+&i2c1 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c1>;
+	status = "okay";
+
+};
 
 &iomuxc {
 	pinctrl-names = "default";
@@ -385,12 +385,12 @@
 //			>;
 //		};
 
-//		pinctrl_i2c1: i2c1grp {
-//			fsl,pins = <
-//				MX6UL_PAD_CSI_PIXCLK__I2C1_SCL 		0x4001b8b0 // check ok
-//				MX6UL_PAD_CSI_MCLK__I2C1_SDA 		0x4001b8b0
-//			>;
-//		};
+		pinctrl_i2c1: i2c1grp {
+			fsl,pins = <
+				MX6UL_PAD_CSI_PIXCLK__I2C1_SCL 		0x4001b8b0 // check ok
+				MX6UL_PAD_CSI_MCLK__I2C1_SDA 		0x4001b8b0
+			>;
+		};
 
 //		pinctrl_pwm1: pwm1grp {
 //			fsl,pins = <
