@@ -1,0 +1,10 @@
+config info 'Settings'
+	option gpio48 'input'
+	option gpio49 'input'
+	option gpio50 'input'
+	option gpio51 'input'
+	option gpio24 'output'
+	option gpio25 'output'
+	option gpio118 'output'
+	option gpio119 'output'
+	
