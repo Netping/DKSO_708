@@ -1,37 +1,3 @@
-CONF_FILE=gpioconf
-DIRECTCONF_FILE=directionconf
-CONF_DIR=/etc/config/
-
-
-ETC_FILES=
-ETC_FILES_DIR=/etc/netping/gpio/
-
-INSTALL_DIR=
-
-TESTS_SRC_DIR=Tests
-
-install:
-ifneq ($(INSTALL_DIR),)
-	mkdir -p $(INSTALL_DIR)$(CONF_DIR)
-	mkdir -p $(INSTALL_DIR)$(MODULE_FILES_DIR)
-endif
-	mkdir -p $(INSTALL_DIR)$(ETC_FILES_DIR)
-	cp $(CONF_FILE) $(INSTALL_DIR)/$(CONF_DIR)
-	cp $(DIRECTCONF_FILE) $(INSTALL_DIR)/$(CONF_DIR)
-	for f in $(MODULE_FILES); do cp $${f} $(INSTALL_DIR)/$(MODULE_FILES_DIR); done
-	cp -r $(TESTS_SRC_DIR) $(INSTALL_DIR)$(ETC_FILES_DIR)
-
-clean:
-ifeq ($(INSTALL_DIR),)
-	rm -f $(CONF_DIR)$(CONF_FILE)
-	rm -f $(CONF_DIR)$(DIRECTCONF_FILE)
-	for f in $(MODULE_FILES); do rm -f $(MODULE_FILES_DIR)$${f}; done
-	rm -rf $(ETC_FILES_DIR)
-else
-	rm -rf $(INSTALL_DIR)
-endif
---------------------------------------------------------------------------
-
 include $(TOPDIR)/rules.mk
 PKG_NAME:="OWRT_gpio_protocol"
 PKG_VERSION=0.1
@@ -58,26 +24,34 @@ define Package/owrt_gpio_protocol
   DEPENDS:= +owrt_log
 endef
 
-define Package/owrt_pingers/description
+define Package/owrt_gpio_protocol/description
  Internal GPIO communication module
 endef
 
 MODULE_FILES:=gpioproto.py
 MODULE_FILES_DIR:=/usr/lib/python3.7/
 
-CONF_FILE:=pingerconf
+CONF_FILE:=gpioconf
+DIRECTCONF_FILE:=directionconf
 CONF_DIR:=/etc/config/
 
-define Package/owrt_pingers/install
+ETC_FILES:=
+ETC_FILES_DIR:=/etc/netping/gpio/
+
+define Package/owrt_gpio_protocol/install
 	mkdir -p $(1)$(CONF_DIR)
-	cp $(PKG_BUILD_DIR)/$(CONF_FILE) $(1)$(CONF_DIR)
 	mkdir -p $(1)$(MODULE_FILES_DIR)
-	cp $(PKG_BUILD_DIR)/$(MODULE_FILES) $(1)$(MODULE_FILES_DIR)
+	mkdir -p $(1)$(ETC_FILES_DIR)
+	cp $(PKG_BUILD_DIR)/$(CONF_FILE) $(1)$(CONF_DIR)
+	cp $(PKG_BUILD_DIR)/$(DIRECTCONF_FILE) $(1)$(CONF_DIR)
+	for f in $(PKG_BUILD_DIR)/$(MODULE_FILES); do cp $${f} $(1)$(MODULE_FILES_DIR); done
 endef
 
-define Package/owrt_pingers/clean
+define Package/owrt_gpio_protocol/clean
 	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
+	rm -f $(1)$(CONF_DIR)$(DIRECTCONF_FILE)
 	rm -rf $(1)$(MODULE_FILES_DIR)
+	rm -rf $(1)$(ETC_FILES_DIR)
 endef
 
-$(eval $(call BuildPackage,owrt_pingers))
+$(eval $(call BuildPackage,owrt_gpio_protocol))
