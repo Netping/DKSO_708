@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_pingers"
 PKG_VERSION=0.1
-PKG_REV:=bbe0c339d299ab702c1436ad714063d2e276a006
+PKG_REV:=ece0f45615a911b3d559670c7bb2886351cd4108
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_pingers-$(PKG_VERSION)

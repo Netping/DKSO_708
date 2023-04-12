@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_digital_inputs"
 PKG_VERSION=0.1
-PKG_REV:=e5ad5d6f787d605279f6a18339c0935f7b6c9846
+PKG_REV:=a0c3d5d6e026364733273460842753e80cdc65f1
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_digital_inputs-$(PKG_VERSION)

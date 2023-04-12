@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_plib_click"
 PKG_VERSION:=8.0.3
-PKG_REV:=30a7b332a86140060f509ea22ba103d5d28dea34
+PKG_REV:=c9b6d2d1c1189d9373a197c349aa30c2fe01ba80
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_plib_click-$(PKG_VERSION)

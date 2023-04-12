@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_sensor_value"
 PKG_VERSION=0.1
-PKG_REV:=354b476102a01596461989708f76a954eb6abc51
+PKG_REV:=3d6ecb72313b09cfcfaa98b7abeb6484e095c182
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_sensor_value-$(PKG_VERSION)

@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_email_settings"
 PKG_VERSION=0.2
-PKG_REV:=36fa608cf068c46187b26ef697b2268705ee2432
+PKG_REV:=a8abb10b4febc0c5a69cf32a4f22dc27e3e3834d
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_email_settings-$(PKG_VERSION)

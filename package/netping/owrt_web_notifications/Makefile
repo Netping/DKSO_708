@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_notifications"
 PKG_VERSION=1.2
-PKG_REV:=f2462a1932f68cb607fc64d81950efffa674d090
+PKG_REV:=22fb1b18675e920658a6cf7196fc7f4edb187d71
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_notifications-$(PKG_VERSION)

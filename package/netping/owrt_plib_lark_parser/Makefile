@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_plib_lark_parser"
 PKG_VERSION:=0.11.3
-PKG_REV:=09b3b6057881d0994f817514681b1fa08a4cfe29
+PKG_REV:=6d08776d0e675bcb67a7ac72bba70353daa5f05b
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_plib_lark_parser-$(PKG_VERSION)

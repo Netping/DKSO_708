@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_digital_outs"
 PKG_VERSION=0.1
-PKG_REV:=155de2fd2dadbc6bd5f8d320275fbd9e21130aaa
+PKG_REV:=d019604b98d188f9a93bb90b5f29313bb7c9ffbd
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_digital_outs-$(PKG_VERSION)

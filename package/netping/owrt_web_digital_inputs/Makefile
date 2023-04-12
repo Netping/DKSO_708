@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_web_digital_inputs"
 PKG_VERSION=0.1
-PKG_REV:=424652ca822089996737c8069835e996db34e19d
+PKG_REV:=65522e02fef165448ac59a2666db672e0de17ddb
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_web_digital_inputs-$(PKG_VERSION)

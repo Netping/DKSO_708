@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt_snmp_protocol"
 PKG_VERSION=1.2
-PKG_REV:=990231110c60e7ef30732bfa5cb0d7e783d8d766
+PKG_REV:=627d77973f382d83d43615eae785e96bf7b91609
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_snmp_protocol-$(PKG_VERSION)

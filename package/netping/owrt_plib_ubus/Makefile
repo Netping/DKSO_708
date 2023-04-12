@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owrt-plib-ubus
 PKG_VERSION:=0.1.1
-PKG_REV:=8652f449fd9c143251bd6f2b685aaafb29f0e0f8
+PKG_REV:=575132ac37d90e950a42fd66186ccd384c02da1e
 PKG_RELEASE:=2
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-ubus-$(PKG_VERSION)
