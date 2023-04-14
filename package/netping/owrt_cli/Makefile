@@ -46,4 +46,9 @@ define Package/owrt_cli/install
 	ln -s $(1)$(ETC_FILES_DIR)$(ETC_FILES_CLI) $(1)$(BIN_DIR)$(CLI_LINK)
 endef
 
+define Package/owrt_cli/clean
+	rm -rf $(1)$(ETC_FILES_DIR)
+	rm -f $(1)$(BIN_DIR)$(CLI_LINK)
+endef
+
 $(eval $(call BuildPackage,owrt_cli))

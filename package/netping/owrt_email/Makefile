@@ -1,9 +1,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME="owrt_email"
-PKG_VERSION=1.1
+PKG_VERSION=0.2
 PKG_REV:=025596335cae67fcf88ef123ef046881a19d853b
-PKG_RELEASE=2
+PKG_RELEASE=8
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_email-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -35,28 +35,41 @@ CONF_DIR:=/etc/config/
 MODULE_FILES:=smtpmail.py
 MODULE_FILES_DIR:=/usr/lib/python3.7/site-packages/
 
-ETC_FILES:=Configname
+ETC_FILE1:=Configname
+ETC_FILE2:=smtpmaild.py
+ETC_FILE3:=smtphash
 ETC_FILES_DIR:=/etc/netping_email/
 ETC_FILES_COMMANDS:=cmd_sendmail.py
 ETC_FILES_COMMANDS_DIR:=commands
 
-EBNF_DIR:=frontend/model/ebnf
-COMPILED_EBNF_DIR:=grammars
-F:=port.ne
-fname:=$(shell echo $(F) | sed 's/\(.*\)\..*/\1/')
+RUN_SOURCE_FILE:=owrt_email_autorun
+RUN_DEST_FILE:=owrt_email
+RC_RUN_DEST_FILE:=S90OWRT-Email
+RUN_DIR:=/etc/init.d/
+RC_RUN_DIR:=/etc/rc.d/
 
 define Package/owrt_email/install
 	mkdir -p $(1)$(CONF_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(CONF_FILE) $(1)$(CONF_DIR)
 	mkdir -p $(1)$(MODULE_FILES_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(MODULE_FILES) $(1)$(MODULE_FILES_DIR)
 	mkdir -p $(1)$(ETC_FILES_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/etc/$(ETC_FILES) $(1)$(ETC_FILES_DIR)
 	mkdir -p $(1)$(ETC_FILES_DIR)$(ETC_FILES_COMMANDS_DIR)
+	mkdir -p $(1)$(RUN_DIR)
+	mkdir -p $(1)$(RC_RUN_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(CONF_FILE) $(1)$(CONF_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(MODULE_FILES) $(1)$(MODULE_FILES_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/etc/$(ETC_FILE1) $(1)$(ETC_FILES_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/etc/$(ETC_FILE2) $(1)$(ETC_FILES_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/etc/$(ETC_FILE3) $(1)$(ETC_FILES_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/etc/$(ETC_FILES_COMMANDS) $(1)$(ETC_FILES_DIR)$(ETC_FILES_COMMANDS_DIR)
-	mkdir -p $(1)$(ETC_FILES_DIR)$(COMPILED_EBNF_DIR)
-	python3 -m lark.tools.nearley $(PKG_BUILD_DIR)/$(EBNF_DIR)/$(F) main ./nearley > $(PKG_BUILD_DIR)/$(fname).py
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(fname).py $(1)$(ETC_FILES_DIR)$(COMPILED_EBNF_DIR)/$(fname).py
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SOURCE_FILE) $(1)$(RUN_DIR)$(RUN_DEST_FILE)
+	ln -s $(1)$(RUN_DIR)$(RUN_DEST_FILE) $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
+endef
+
+define Package/owrt_email/clean
+	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
+	rm -rf $(1)$(ETC_FILES_DIR)
+	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
+	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 endef
 
 $(eval $(call BuildPackage,owrt_email))
