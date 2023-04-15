@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owrt_plib_puresnmp
-PKG_VERSION:=1.2
+PKG_VERSION:=1.11.0-1
 PKG_REV:=aed4e4dacc96a5e2a011bfeec120f5cf10a9370d
 PKG_RELEASE:=1
 
