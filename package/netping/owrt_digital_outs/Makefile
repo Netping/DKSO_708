@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:="owrt_digital_outs"
+PKG_NAME:="owrt-digital-outs"
 PKG_VERSION=0.2
 PKG_REV:=b2c857d3fef2a12dc2092ebd5ca38833310ef062
 PKG_RELEASE:=18
@@ -29,12 +29,12 @@ define Package/owrt_digital_outs/description
  Module for sending email notifications
 endef
 
-CONF_FILE:=owrt_digital_outs
+CONF_FILE:=owrt-digital-outs
 CONF_DIR:=/etc/config/
 
-ETC_FILE:=owrt_digital_outs.py
+ETC_FILE:=owrt-digital-outs.py
 ETC_DIR:=/etc/
-ETC_FILES_DIR:=/etc/netping_digital_outs/
+ETC_FILES_DIR:=/etc/netping/owrt-digital-outs/
 
 CLI_COMMANDS_DIR:=commands
 CLI_HELP_FILE:=Help
