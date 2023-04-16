@@ -5,9 +5,9 @@ PKG_VERSION=0.2
 PKG_REV:=b2c857d3fef2a12dc2092ebd5ca38833310ef062
 PKG_RELEASE:=18
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/owrt_digital_outs-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-digital-outs-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/Netping/OWRT_Digital_outs.git
+PKG_SOURCE_URL:=https://github.com/Netping/owrt-digital-outs.git
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
 
@@ -15,17 +15,17 @@ PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/owrt_digital_outs
+define Package/owrt-digital-outs
   SECTION:=netping
   CATEGORY:=NetPing
   SUBMENU:=Base
   TITLE:=module for binary outputs control
-  URL:=https://github.com/Netping/OWRT_Digital_outs
+  URL:=https://github.com/Netping/owrt-digital-outs
   MAINTAINER:=Aleksandr Shenshin <info@netping.ru>
   DEPENDS:= +owrt_log +owrt_snmp_protocol +owrt-plib-ubus
 endef
 
-define Package/owrt_digital_outs/description
+define Package/owrt-digital-outs/description
  Module for sending email notifications
 endef
 
@@ -48,7 +48,7 @@ RC_RUN_DEST_FILE:=S90OWRT-Digital-outs
 RUN_DIR:=/etc/init.d/
 RC_RUN_DIR:=/etc/rc.d/
 
-define Package/owrt_digital_outs/install
+define Package/owrt-digital-outs/install
 	mkdir -p $(1)$(CONF_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(CONF_FILE) $(1)$(CONF_DIR)
 	mkdir -p $(1)$(ETC_FILES_DIR)
@@ -63,11 +63,11 @@ define Package/owrt_digital_outs/install
 	ln -s $(1)$(RUN_DIR)$(RUN_DEST_FILE) $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 endef
 
-define Package/owrt_digital_outs/clean
+define Package/owrt-digital-outs/clean
 	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
 	rm -rf $(1)$(ETC_FILES_DIR)
 	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 endef
 
-$(eval $(call BuildPackage,owrt_digital_outs))
+$(eval $(call BuildPackage,owrt-digital-outs))
