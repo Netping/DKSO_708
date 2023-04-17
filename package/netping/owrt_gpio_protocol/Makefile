@@ -1,5 +1,5 @@
 include $(TOPDIR)/rules.mk
-PKG_NAME:="OWRT_gpio_protocol"
+PKG_NAME:=OWRT_gpio_protocol
 PKG_VERSION=0.1
 PKG_REV:=e23ba49ab4f18f3b86c74e8514e501569ed73cb6
 PKG_RELEASE:=7
