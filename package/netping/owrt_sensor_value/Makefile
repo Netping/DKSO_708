@@ -22,7 +22,7 @@ define Package/owrt_sensor_value
   TITLE:=module for sensors returning a digital values
   URL:=https://github.com/Netping/OWRT-sensor-value
   MAINTAINER:=Aleksandr Shenshin <info@netping.ru>
-  DEPENDS:= +owrt_log +owrt_snmp_protocol +owrt_cli +owrt_plib_lark_parser
+  DEPENDS:= +owrt_log +owrt_snmp_protocol +owrt_cli +ubus-0.1.1
 endef
 
 define Package/owrt_sensor_value/description
@@ -31,10 +31,10 @@ endef
 
 MODULE_FILES_DIR:=/usr/lib/python3.7/site-packages/
 
-CONF_FILES:=owrt_sensor_value
+CONF_FILES:=owrt-sensor-value
 CONF_DIR:=/etc/config/
 
-ETC_FILES:=owrt_sensor_value.py
+ETC_FILES:=owrt-sensor-value.py
 ETC_FILES_DIR:=/etc/netping/OWRT-sensor-value/
 
 CLI_COMMANDS_DIR:=commands
