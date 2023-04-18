@@ -53,6 +53,7 @@ define Package/owrt_sensor_value/install
 	cp -r $(PKG_BUILD_DIR)/$(CONF_FILES) $(1)$(CONF_DIR)
 	mkdir -p $(1)$(ETC_FILES_DIR)
 	cp -r $(PKG_BUILD_DIR)/etc/$(ETC_FILES) $(1)$(ETC_FILES_DIR)
+	mkdir -p $(1)$(CLI_COMMANDS_DIR)
 	cp -r $(PKG_BUILD_DIR)/$(CLI_COMMANDS_DIR) $(1)$(ETC_FILES_DIR)
 	cp -r $(PKG_BUILD_DIR)/$(CLI_HELP_FILE) $(1)$(ETC_FILES_DIR)
 	cp -r $(PKG_BUILD_DIR)/$(CLI_CONFIGNAME) $(1)$(ETC_FILES_DIR)
