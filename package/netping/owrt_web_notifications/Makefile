@@ -21,7 +21,7 @@ define Package/owrt_web_notifications
   SUBMENU:=Base
   TITLE:=web interface for notifications module
   URL:=https://github.com/Netping/OWRT-WEB-Notifications
-  MAINTAINER:=Andrei Zelenin <info@netping.ru>
+  MAINTAINER:=Alexey Lozhanin <info@netping.ru>
   DEPENDS:=
 endef
 
@@ -29,15 +29,28 @@ define Package/owrt_web_notifications/description
  Web interface for notifications module
 endef
 
-MODULE_FILES_DIR:=/usr/lib/lua/luci
-STATIC_FILES:=htdocs/luci-static/resources/*
-STATIC_FILES_DIR:=/www/luci-static/resources/
-
+MODULE_FILES:=luasrc
+MODULE_FILES_DIR:=/usr/lib/lua/luci/
+STATIC_FILES:=netping
+STATIC_FILES_DIR:=/www/luci-static/netping/
+I18N_FILES:=i18n
+I18N_FILES_DIR:=/usr/lib/lua/luci/i18n/
 
 define Package/owrt_web_notifications/install
-	mkdir -p $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
-	cp -r $(PKG_BUILD_DIR)/luasrc/* $(1)$(MODULE_FILES_DIR)
-	cp -r $(PKG_BUILD_DIR)/$(STATIC_FILES) $(1)$(MODULE_FILES_DIR)$(STATIC_FILES_DIR)
+	mkdir -p $(1)$(MODULE_FILES_DIR)
+	mkdir -p $(1)$(STATIC_FILES_DIR)
+	mkdir -p $(1)$(I18N_FILES_DIR)
+
+	cp -r $(PKG_BUILD_DIR)/$(MODULE_FILES)/* $(1)$(MODULE_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(STATIC_FILES)/* $(1)$(MODULE_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(I18N_FILES)/*.lmo $(1)$(MODULE_FILES_DIR)
+endef
+
+define Package/owrt_web_notifications/clean
+	rm -r $(1)$(MODULE_FILES_DIR)controller/$(PKG_NAME)
+	rm -r $(1)$(MODULE_FILES_DIR)view/$(PKG_NAME)
+	rm -r $(1)$(STATIC_FILES_DIR)$(PKG_NAME)s.*
+	rm -r $(1)$(I18N_FILES_DIR)$(PKG_NAME).*.lmo
 endef
 
 $(eval $(call BuildPackage,owrt_web_notifications))
