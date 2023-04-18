@@ -22,7 +22,7 @@ define Package/owrt_sensor_value
   TITLE:=module for sensors returning a digital values
   URL:=https://github.com/Netping/OWRT-sensor-value
   MAINTAINER:=Aleksandr Shenshin <info@netping.ru>
-  DEPENDS:= +owrt_log +owrt_snmp_protocol +owrt_cli +ubus-0.1.1
+  DEPENDS:= +owrt_log +owrt_snmp_protocol +owrt_cli
 endef
 
 define Package/owrt_sensor_value/description
