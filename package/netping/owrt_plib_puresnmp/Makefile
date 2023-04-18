@@ -37,34 +37,31 @@ define Package/owrt_plib_puresnmp/install
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/puresnmp-1.11.0.dist-info
 	cp -r  $(PKG_BUILD_DIR)/puresnmp-1.11.0.dist-info/* $(1)/usr/lib/python3.7/site-packages/puresnmp-1.11.0.dist-info
 
-	mkdir -p $(1)/usr/lib/python3.7/site-packages
 	mkdir -p $(1)/usr/lib/python3.7/site-packages/t61codec-2.0.0.dist-info
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages
 	cp -r $(PKG_BUILD_DIR)/t61codec.py $(1)/usr/lib/python3.7/site-packages
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/t61codec-2.0.0.dist-info
 	cp -r  $(PKG_BUILD_DIR)/t61codec-2.0.0.dist-info/* $(1)/usr/lib/python3.7/site-packages/t61codec-2.0.0.dist-info
 
-	mkdir -p $(1)/usr/lib/python3.7/site-packages
-	mkdir -p $(1)/usr/lib/python3.7/site-packages/typing_extensions-3.10.0.2.dist-info
-	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages
-	cp -r $(PKG_BUILD_DIR)/typing_extensions.py $(1)/usr/lib/python3.7/site-packages
-	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/typing_extensions-3.10.0.2.dist-info
-	cp -r  $(PKG_BUILD_DIR)/typing_extensions-3.10.0.2.dist-info/* $(1)/usr/lib/python3.7/site-packages/typing_extensions-3.10.0.2.dist-info
-
-	mkdir -p $(1)/usr/lib/python3.7/site-packages
 	mkdir -p $(1)/usr/lib/python3.7/site-packages/verlib-0.1-py3.7.egg-info
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages
 	cp -r $(PKG_BUILD_DIR)/verlib.py $(1)/usr/lib/python3.7/site-packages
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/verlib-0.1-py3.7.egg-info
 	cp -r  $(PKG_BUILD_DIR)/verlib-0.1-py3.7.egg-info/* $(1)/usr/lib/python3.7/site-packages/verlib-0.1-py3.7.egg-info
 
-	mkdir -p $(1)/usr/lib/python3.7/site-packages
-	mkdir -p $(1)/usr/lib/python3.7/site-packages/zipp-3.6.0.dist-info
+	mkdir -p $(1)/usr/lib/python3.7/site-packages/six-1.16.0.dist-info
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages
-	cp -r $(PKG_BUILD_DIR)/zipp.py $(1)/usr/lib/python3.7/site-packages
-	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/zipp-3.6.0.dist-info
-	cp -r  $(PKG_BUILD_DIR)/zipp-3.6.0.dist-info/* $(1)/usr/lib/python3.7/site-packages/zipp-3.6.0.dist-info
+	cp -r $(PKG_BUILD_DIR)/six.py $(1)/usr/lib/python3.7/site-packages
+	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/six-1.16.0.dist-info
+	cp -r  $(PKG_BUILD_DIR)/six-1.16.0.dist-info/* $(1)/usr/lib/python3.7/site-packages/six-1.16.0.dist-info
+endef
 
+define Package/owrt_digital_inputs/clean
+	rm -rf $(1)/usr/lib/python3.7/site-packages/puresnmp
+	rm -rf $(1)/usr/lib/python3.7/site-packages/puresnmp-1.11.0.dist-info
+	rm -rf $(1)/usr/lib/python3.7/site-packages/t61codec-2.0.0.dist-info
+	rm -rf $(1)/usr/lib/python3.7/site-packages/verlib-0.1-py3.7.egg-info
+	rm -rf $(1)/usr/lib/python3.7/site-packages/six-1.16.0.dist-info
 endef
 
 $(eval $(call BuildPackage,owrt_plib_puresnmp))
