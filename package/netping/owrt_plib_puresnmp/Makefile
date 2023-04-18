@@ -30,12 +30,6 @@ endef
 
 define Package/owrt_plib_puresnmp/install
 	mkdir -p $(1)/usr/lib/python3.7/site-packages/
-	mkdir -p $(1)/usr/lib/python3.7/site-packages/importlib_metadata-4.8.1.dist-info
-	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/importlib_metadata
-	cp -r $(PKG_BUILD_DIR)/importlib_metadata/* $(1)/usr/lib/python3.7/site-packages/importlib_metadata
-	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/importlib_metadata-4.8.1.dist-info
-	cp -r  $(PKG_BUILD_DIR)/importlib_metadata-4.8.1.dist-info/* $(1)/usr/lib/python3.7/site-packages/importlib_metadata-4.8.1.dist-info
-
 	mkdir -p $(1)/usr/lib/python3.7/site-packages/puresnmp
 	mkdir -p $(1)/usr/lib/python3.7/site-packages/puresnmp-1.11.0.dist-info
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/puresnmp
