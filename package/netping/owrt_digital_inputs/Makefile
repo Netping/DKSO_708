@@ -22,7 +22,7 @@ define Package/owrt_digital_inputs
   TITLE:=input lines module
   URL:=https://github.com/Netping/OWRT-digital-inputs
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>
-  DEPENDS:= +owrt_log +owrt_snmp_protocol +owrt_plib_ubus
+  DEPENDS:= +owrt_log +owrt_snmp_protocol
 endef
 
 define Package/owrt_digital_inputs/description
