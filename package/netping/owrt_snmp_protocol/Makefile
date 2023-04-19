@@ -37,4 +37,8 @@ define Package/owrt_snmp_protocol/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(MODULE_FILES) $(1)$(MODULE_FILES_DIR)
 endef
 
+define Package/owrt_digital_inputs/clean
+rm -f $(1)$(MODULE_FILES_DIR)$(MODULE_FILES)
+endef
+
 $(eval $(call BuildPackage,owrt_snmp_protocol))

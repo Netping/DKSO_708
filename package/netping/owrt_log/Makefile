@@ -61,13 +61,13 @@ define Package/owrt_log/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/etc/$(ETC_FILE2) $(1)$(ETC_FILES_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/etc/$(ETC_FILES_COMMANDS) $(1)$(ETC_FILES_DIR)$(ETC_FILES_COMMANDS_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SOURCE_FILE) $(1)$(RUN_DIR)$(RUN_DEST_FILE)
-	ln -s $(1)$(RUN_DIR)$(RUN_DEST_FILE) $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
+###	ln -s $(1)$(RUN_DIR)$(RUN_DEST_FILE) $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 endef
 
 define Package/owrt_log/clean
 	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
 	rm -rf $(1)$(ETC_FILES_DIR)
-	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
+###	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 endef
 

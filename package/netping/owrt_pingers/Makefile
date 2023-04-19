@@ -54,13 +54,13 @@ define Package/owrt_pingers/install
 	mkdir -p $(1)$(RUN_DIR)
 	mkdir -p $(1)$(RC_RUN_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SOURCE_FILE) $(1)$(RUN_DIR)$(RUN_DEST_FILE)
-	ln -s $(1)$(RUN_DIR)$(RUN_DEST_FILE) $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
+###	ln -s $(1)$(RUN_DIR)$(RUN_DEST_FILE) $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 endef
 
 define Package/owrt_pingers/clean
 	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
 	rm -rf $(1)$(MODULE_FILES_DIR)
-	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
+###	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 endef
 
