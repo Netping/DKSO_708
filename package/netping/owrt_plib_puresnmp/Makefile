@@ -48,12 +48,6 @@ define Package/owrt_plib_puresnmp/install
 	cp -r $(PKG_BUILD_DIR)/verlib.py $(1)/usr/lib/python3.7/site-packages
 	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/verlib-0.1-py3.7.egg-info
 	cp -r  $(PKG_BUILD_DIR)/verlib-0.1-py3.7.egg-info/* $(1)/usr/lib/python3.7/site-packages/verlib-0.1-py3.7.egg-info
-
-	mkdir -p $(1)/usr/lib/python3.7/site-packages/six-1.16.0.dist-info
-	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages
-	cp -r $(PKG_BUILD_DIR)/six.py $(1)/usr/lib/python3.7/site-packages
-	$(INSTALL_DIR) $(1)/usr/lib/python3.7/site-packages/six-1.16.0.dist-info
-	cp -r  $(PKG_BUILD_DIR)/six-1.16.0.dist-info/* $(1)/usr/lib/python3.7/site-packages/six-1.16.0.dist-info
 endef
 
 define Package/owrt_digital_inputs/clean
@@ -61,7 +55,6 @@ define Package/owrt_digital_inputs/clean
 	rm -rf $(1)/usr/lib/python3.7/site-packages/puresnmp-1.11.0.dist-info
 	rm -rf $(1)/usr/lib/python3.7/site-packages/t61codec-2.0.0.dist-info
 	rm -rf $(1)/usr/lib/python3.7/site-packages/verlib-0.1-py3.7.egg-info
-	rm -rf $(1)/usr/lib/python3.7/site-packages/six-1.16.0.dist-info
 endef
 
 $(eval $(call BuildPackage,owrt_plib_puresnmp))
