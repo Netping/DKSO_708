@@ -29,26 +29,29 @@ define Package/owrt_web_digital_outs/description
  Web interface for binary outputs control module
 endef
 
-MODULE_FILES:=luasrc
-MODULE_FILES_DIR:=/usr/lib/lua/luci/
+MODULE_FILES:=luasrc/controller/owrt_web_digital_outs/index.lua
+MODULE_FILES_DIR:=/usr/lib/lua/luci/controller/owrt_web_digital_outs/
+VIEW_FILES:=luasrc/view/owrt_web_digital_outs/digital_outs.htm
+VIEW_FILES_DIR:=/usr/lib/lua/luci/view/owrt_web_digital_outs/
 STATIC_FILES:=netping
 STATIC_FILES_DIR:=/www/luci-static/netping/
 I18N_FILES:=i18n
 I18N_FILES_DIR:=/usr/lib/lua/luci/i18n/
 
-define Package/owrt_web_digital_outs/install
+define Package/owrt_web_notifications/install
 	mkdir -p $(1)$(MODULE_FILES_DIR)
+	mkdir -p $(1)$(VIEW_FILES_DIR)
 	mkdir -p $(1)$(STATIC_FILES_DIR)
 	mkdir -p $(1)$(I18N_FILES_DIR)
-
-	cp -r $(PKG_BUILD_DIR)/$(MODULE_FILES)/* $(1)$(MODULE_FILES_DIR)
-	cp -r $(PKG_BUILD_DIR)/$(STATIC_FILES)/* $(1)$(MODULE_FILES_DIR)
-	cp -r $(PKG_BUILD_DIR)/$(I18N_FILES)/*.lmo $(1)$(MODULE_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(MODULE_FILES) $(1)$(MODULE_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(VIEW_FILES) $(1)$(VIEW_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(STATIC_FILES)/* $(1)$(STATIC_FILES_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(I18N_FILES)/*.lmo $(1)$(I18N_FILES_DIR)
 endef
 
 define Package/owrt_web_digital_outs/clean
-	rm -r $(1)$(MODULE_FILES_DIR)controller/$(PKG_NAME)
-	rm -r $(1)$(MODULE_FILES_DIR)view/$(PKG_NAME)
+	rm -r $(1)$(MODULE_FILES_DIR)
+	rm -r $(1)$$(1)$(VIEW_FILES_DIR)
 	rm -r $(1)$(STATIC_FILES_DIR)$(PKG_NAME).*
 	rm -r $(1)$(I18N_FILES_DIR)$(PKG_NAME).*.lmo
 endef
