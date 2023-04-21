@@ -38,7 +38,7 @@ STATIC_FILES_DIR:=/www/luci-static/netping/
 I18N_FILES:=i18n
 I18N_FILES_DIR:=/usr/lib/lua/luci/i18n/
 
-define Package/owrt_web_notifications/install
+define Package/owrt_web_digital_outs/install
 	mkdir -p $(1)$(MODULE_FILES_DIR)
 	mkdir -p $(1)$(VIEW_FILES_DIR)
 	mkdir -p $(1)$(STATIC_FILES_DIR)
