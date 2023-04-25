@@ -32,7 +32,7 @@ endef
 MODULE_FILES:=luasrc/controller/owrt_web_notification/index.lua
 MODULE_FILES_DIR:=/usr/lib/lua/luci/controller/owrt_web_notifications/
 VIEW_FILES:=luasrc/view/owrt_web_notification/notification.htm
-VIEW_FILES_DIR:=/usr/lib/lua/luci/view/owrt_web_notifications/
+VIEW_FILES_DIR:=/usr/lib/lua/luci/view/owrt_web_notification/
 STATIC_FILES:=netping
 STATIC_FILES_DIR:=/www/luci-static/netping/
 I18N_FILES:=i18n
