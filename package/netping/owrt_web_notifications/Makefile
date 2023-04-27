@@ -30,7 +30,7 @@ define Package/owrt_web_notifications/description
 endef
 
 MODULE_FILES:=luasrc/controller/owrt_web_notification/index.lua
-MODULE_FILES_DIR:=/usr/lib/lua/luci/controller/owrt_web_notifications/
+MODULE_FILES_DIR:=/usr/lib/lua/luci/controller/owrt_web_notification/
 VIEW_FILES:=luasrc/view/owrt_web_notification/notification.htm
 VIEW_FILES_DIR:=/usr/lib/lua/luci/view/owrt_web_notification/
 STATIC_FILES:=netping
