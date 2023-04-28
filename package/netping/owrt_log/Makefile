@@ -34,7 +34,7 @@ MODULE_FILES_DIR:=/usr/lib/python3.7/site-packages/
 
 ETC_FILE1:=journald.py
 ETC_FILE2:=Help
-ETC_FILES_DIR:=/etc/netping_log/
+ETC_FILES_DIR:=/etc/netping/log/
 
 CONF_FILE:=journalconf
 CONF_DIR:=/etc/config/

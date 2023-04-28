@@ -32,7 +32,7 @@ endef
 ETC_FILES_CLI:=cli.py
 ETC_FILES_CONFPARSER:=confparser.py
 ETC_FILES_NETPINGCLI:=netpingcli.py
-ETC_FILES_DIR:=/etc/netping_cli/
+ETC_FILES_DIR:=/etc/netping/cli/
 
 CLI_LINK:=netping
 BIN_DIR:=/usr/bin/

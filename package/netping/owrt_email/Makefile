@@ -38,7 +38,7 @@ MODULE_FILES_DIR:=/usr/lib/python3.7/site-packages/
 ETC_FILE1:=Configname
 ETC_FILE2:=smtpmaild.py
 ETC_FILE3:=smtphash
-ETC_FILES_DIR:=/etc/netping_email/
+ETC_FILES_DIR:=/etc/netping/email/
 ETC_FILES_COMMANDS:=cmd_sendmail.py
 ETC_FILES_COMMANDS_DIR:=commands
 

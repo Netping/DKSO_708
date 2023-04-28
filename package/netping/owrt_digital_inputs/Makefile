@@ -33,7 +33,7 @@ MODULE_FILES_DIR:=/usr/lib/python3.7/site-packages/
 
 ETC_FILE1:=Configname
 ETC_FILE2:= owrt_digital_inputs.py
-ETC_FILES_DIR:=/etc/netping_digital_inputs/
+ETC_FILES_DIR:=/etc/netping/digital_inputs/
 
 CONF_FILE:=diginsensorconf
 CONF_DIR:=/etc/config/

@@ -33,7 +33,7 @@ MODULE_FILES_DIR:=/usr/lib/python3.7/site-packages/
 
 MODULE_FILE1:=pingers.py
 MODULE_FILE2:=Configname
-MODULE_FILES_DIR:=/etc/netping_pingers/
+MODULE_FILES_DIR:=/etc/netping/pingers/
 
 CONF_FILE:=pingerconf
 CONF_DIR:=/etc/config/

@@ -31,7 +31,7 @@ endef
 
 MODULE_FILE1:=notify.py
 MODULE_FILE2:=Configname
-MODULE_FILES_DIR:=/etc/netping_notifications/
+MODULE_FILES_DIR:=/etc/netping/notifications/
 
 CONF_FILE:=notifyconf
 CONF_DIR:=/etc/config/
