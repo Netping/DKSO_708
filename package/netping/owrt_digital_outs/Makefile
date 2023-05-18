@@ -34,7 +34,7 @@ CONF_DIR:=/etc/config/
 
 ETC_FILE:=owrt-digital-outs.py
 ETC_DIR:=/etc/
-ETC_FILES_DIR:=/etc/netping/owrt-digital-outs/
+ETC_FILES_DIR:=/etc/netping/OWRT-digital-outs/
 
 CLI_COMMANDS_DIR:=commands
 CLI_HELP_FILE:=Help
