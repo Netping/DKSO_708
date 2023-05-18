@@ -19,7 +19,7 @@ define Package/owrt_plib_icmplib
   SECTION:=netping
   CATEGORY:=NetPing
   SUBMENU:=Base
-  TITLE:=
+  TITLE:=ICMPlib and dependencies
   URL:=https://github.com/Netping/OWRT-PLIB-icmplib
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>
 endef
