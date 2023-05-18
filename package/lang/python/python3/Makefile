@@ -119,7 +119,7 @@ include ./files/python3-package-*.mk
 
 define Package/python3
 $(call Package/python3/Default)
-  DEPENDS:=+python3-light +python3-requests $(foreach package,$(PYTHON3_PACKAGES_DEPENDS),+$(package))
+  DEPENDS:=+python3-light $(foreach package,$(PYTHON3_PACKAGES_DEPENDS),+$(package))
 endef
 
 define Package/python3/description
