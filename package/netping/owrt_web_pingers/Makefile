@@ -48,6 +48,7 @@ define Package/owrt_web_pingers/install
 	cp -r $(PKG_BUILD_DIR)$(LUCI_SOURCE_DIR)*.htm $(1)$(LUCI_VIEW_DIR)
 	cp -r $(PKG_BUILD_DIR)$(WWW_SOURCE_DIR)*.cgi $(1)$(WWW_STATUS_DIR)
 	cp -r $(PKG_BUILD_DIR)$(WWW_SOURCE_DIR)owrt_web_pingers.* $(1)$(WWW_SCC_JS)
+	chmod +x $(1)$(WWW_STATUS_DIR)*.cgi
 endef
 
 define Package/owrt_web_pingers/remove
