@@ -47,6 +47,7 @@ define Package/owrt_web_netping_schema/install
 	cp -r $(PKG_BUILD_DIR)/$(HTDOCS_SOURCE_DIR)luci-static $(1)$(WWW_DIR)
 	cp -r $(PKG_BUILD_DIR)/$(HTDOCS_SOURCE_DIR)cgi-bin $(1)$(WWW_DIR)
 	cp -r $(PKG_BUILD_DIR)/$(LUCI_SOURCE_DIR)view $(1)$(LUCI_DIR)
+	chmod +x $(1)$(WWW_DIR)cgi-bin/*.cgi
 endef
 
 $(eval $(call BuildPackage,owrt_web_netping_schema))
