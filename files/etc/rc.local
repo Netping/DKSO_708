@@ -17,5 +17,8 @@ fi
 chmod +x /sbin/setmac.sh
 /sbin/setmac.sh
 
+/etc/init.d/dnsmasq disable
+/etc/init.d/dnsmasq stop
+
 exit 0
 
