@@ -8,3 +8,26 @@ config info 'Settings'
 	option gpio118 'output'
 	option gpio119 'output'
 	
+config devicemode
+	option name 'PWR1'
+	option direction 'output'
+
+config devicemode
+	option name 'PWR2'
+	option direction 'output'
+
+config devicemode
+	option name 'IO1'
+	option direction 'input'
+
+config devicemode
+	option name 'IO2'
+	option direction 'input'
+
+config devicemode
+	option name 'IO3'
+	option direction 'input'
+
+config devicemode
+	option name 'IO4'
+	option direction 'input'

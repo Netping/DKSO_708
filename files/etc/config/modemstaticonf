@@ -1,0 +1,8 @@
+config modem 'settings'
+    option imei '000000000000000'
+
+config gpio 
+    option m_on_off "28-out"
+    option m_reset  "27-out"
+    option m_pow_en "74-out"
+    option m_status "29-in"

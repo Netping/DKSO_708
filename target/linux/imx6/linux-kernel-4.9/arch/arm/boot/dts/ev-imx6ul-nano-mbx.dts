@@ -105,6 +105,29 @@
 			regulator-always-on;
 		};
 	};
+	leds {
+			compatible = "gpio-leds";
+			netping_status_led: cpu1_led {
+				label = "yellow:cpu1";
+				gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+				default-state = "on";
+			
+			};
+
+			cpu0_led {
+				label = "yellow:cpu0";
+				gpios = <&gpio4 25 GPIO_ACTIVE_HIGH>;
+				default-state = "off";
+			
+			};
+	
+	};
+	aliases {
+                led-boot = &netping_status_led;
+                led-failsafe = &netping_status_led;
+                led-running = &netping_status_led;
+                led-upgrade = &netping_status_led;
+	};
 
 //		leds {
 //                compatible = "gpio-leds";

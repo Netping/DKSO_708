@@ -1,0 +1,5 @@
+config modem 'settings'
+    option mode "2g"
+
+config ussd_commands
+    option balance '*100#'

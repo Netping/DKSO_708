@@ -33,6 +33,21 @@ apalis_mount_boot() {
 	}
 }
 
+netping_mount_boot() {
+	mkdir -p /boot
+	[ -f /boot/uImage ] || {
+		mount -o rw,noatime /dev/mmcblk1p1 /boot > /dev/null
+	}
+
+}
+
+netping_mount_root() {
+	mkdir /rootfs
+	mount -o rw,noatime /dev/mmcblk1p2 /rootfs > /dev/null
+
+}
+
+
 imx6_board_detect() {
 	local machine
 	local name

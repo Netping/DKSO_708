@@ -1,60 +1,68 @@
 config globals 'globals'
-	list protocol 'D_triger_IO.Д-триггер-Ввод/Вывод'
-	list protocol 'D_triger_Relay.Д-триггер-реле'
-	list protocol 'Fake_IO.Имитация'
+    list protocol 'D_triger_IO.Д-триггер-Ввод/Вывод'
+    list protocol 'D_triger_Relay.Д-триггер-реле'
+    list protocol 'Fake_IO.Имитация'
 
 config device 'prototype'
-	option name 'prototype'
-	option protocol 'D_triger_Relay'
-
-config device 'prototype'
-	option name 'prototype'
-	option protocol 'D_triger_IO'
+    option name 'prototype'
+    option protocol 'Fake_IO'
 
 config device
-	option name 'Relay 1.Реле 1'
-	option protocol 'D_triger_Relay'
-	option sig_RELAY_INT 'GPIO117-output'
-	option sig_TRIG_CLK 'GPIO77-output'
+    option name 'PWR1'
+    option sensor_id 5
+    option allow_dirs 'out'
+    option protocol 'D_triger_Relay'
+    option sig_RELAY_INT 'GPIO78-output'
+    option sig_TRIG_CLK 'GPIO77-output'
 
 config device
-	option name 'Relay 2.Реле 2'
-	option protocol 'D_triger_Relay'
-	option sig_RELAY_INT 'GPIO78-output'
-	option sig_TRIG_CLK 'GPIO77-output'
+    option name 'PWR2'
+    option sensor_id 6
+    option allow_dirs 'out'
+    option protocol 'D_triger_Relay'
+    option sig_RELAY_INT 'GPIO117-output'
+    option sig_TRIG_CLK 'GPIO77-output'
 
 config device
-	option name 'IO 1.Вход-выход 1'
-	option protocol 'D_triger_IO'
-	option sig_TRIG 'GPIO24-output'
-	option sig_PULL_UP 'GPIO52-output'
-	option sig_OUT_UP 'GPIO53-output'
-	option sig_OUT_DOWN 'GPIO19-output'
-	option sig_IN 'GPIO48-input'
+    option name 'IO1'
+    option sensor_id 1
+    option allow_dirs 'in/out'
+    option protocol 'D_triger_IO'
+    option sig_TRIG 'GPIO119-output'
+    option sig_PULL_UP 'GPIO52-output'
+    option sig_OUT_UP 'GPIO53-output'
+    option sig_OUT_DOWN 'GPIO19-output'
+    option sig_IN 'GPIO48-input'
+
+config device
+    option name 'IO2'
+    option sensor_id 2
+    option allow_dirs 'in/out'
+    option protocol 'D_triger_IO'
+    option sig_TRIG 'GPIO118-output'
+    option sig_PULL_UP 'GPIO52-output'
+    option sig_OUT_UP 'GPIO53-output'
+    option sig_OUT_DOWN 'GPIO19-output'
+    option sig_IN 'GPIO49-input'
+
+config device
+    option name 'IO3'
+    option sensor_id 3
+    option allow_dirs 'in/out'
+    option protocol 'D_triger_IO'
+    option sig_TRIG 'GPIO24-output'
+    option sig_PULL_UP 'GPIO52-output'
+    option sig_OUT_UP 'GPIO53-output'
+    option sig_OUT_DOWN 'GPIO19-output'
+    option sig_IN 'GPIO50-input'
 	
 config device
-	option name 'IO 2.Вход-выход 2'
-	option protocol 'D_triger_IO'
-	option sig_TRIG 'GPIO25-output'
-	option sig_PULL_UP 'GPIO52-output'
-	option sig_OUT_UP 'GPIO53-output'
-	option sig_OUT_DOWN 'GPIO19-output'
-	option sig_IN 'GPIO49-input'	
-	
-config device
-	option name 'IO 3.Вход-выход 3'
-	option protocol 'D_triger_IO'
-	option sig_TRIG 'GPIO118-output'
-	option sig_PULL_UP 'GPIO52-output'
-	option sig_OUT_UP 'GPIO53-output'
-	option sig_OUT_DOWN 'GPIO19-output'
-	option sig_IN 'GPIO50-input'	
-	
-config device
-	option name 'IO 4.Вход-выход 4'
-	option protocol 'D_triger_IO'
-	option sig_TRIG 'GPIO119-output'
-	option sig_PULL_UP 'GPIO52-output'
-	option sig_OUT_UP 'GPIO53-output'
-	option sig_OUT_DOWN 'GPIO19-output'
-	option sig_IN 'GPIO51-input'	
+    option name 'IO4'
+    option sensor_id 4
+    option allow_dirs 'in/out'
+    option protocol 'D_triger_IO'
+    option sig_TRIG 'GPIO25-output'
+    option sig_PULL_UP 'GPIO52-output'
+    option sig_OUT_UP 'GPIO53-output'
+    option sig_OUT_DOWN 'GPIO19-output'
+    option sig_IN 'GPIO51-input'

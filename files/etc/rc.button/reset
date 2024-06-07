@@ -1,0 +1,22 @@
+#!/bin/sh
+
+. /lib/functions.sh
+
+#OVERLAY="$( grep ' /overlay ' /proc/mounts )"
+
+case "$ACTION" in
+released)
+	if [ "$SEEN" -lt 1 ]
+	then
+		echo "REBOOT" > /dev/console
+		sync
+		reboot
+	elif [ "$SEEN" -ge 10 ]
+	then
+		echo "RESETTING DEVICE..." > /dev/console
+		sh /sbin/resetdevice.sh
+	fi
+;;
+esac
+
+return 0

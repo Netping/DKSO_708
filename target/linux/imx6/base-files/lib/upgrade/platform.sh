@@ -30,17 +30,20 @@ apalis_do_upgrade() {
 	umount /boot
 }
 
+netping_copy_config() {
+	netping_mount_root
+	cp -af "$UPGRADE_BACKUP" "/rootfs/$BACKUP_FILE"
+	sync
+	umount /rootfs
+}
+
 netping_do_upgrade() {
-	mkdir -p /boot
-	[ -f /boot/uImage ] || {
-		mount -o rw,noatime /dev/mmcblk1p1 /boot > /dev/null
-	}
+	netping_mount_boot
 	get_image "$1" | tar Oxf - sysupgrade-netping/kernel > /boot/uImage
 	sync
 	umount /boot
 
-	mkdir /rootfs
-	mount -o rw,noatime /dev/mmcblk1p2 /rootfs > /dev/null
+	netping_mount_root
 	get_image "$1" | tar Oxf - sysupgrade-netping/root.tar.gz | tar xzf - -C /rootfs
 	sync
 	umount /rootfs
@@ -90,6 +93,9 @@ platform_copy_config() {
 	case "$board" in
 	apalis*)
 		apalis_copy_config
+		;;
+	netping*)
+		netping_copy_config
 		;;
 	esac
 }

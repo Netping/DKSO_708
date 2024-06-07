@@ -1,0 +1,8 @@
+config info 'ConnectionSettings'
+	option smtp_server_encryption_enabled '0'
+	option smtp_server_authentication_enabled '1'
+	option smtp_server_authentication_login 'users_auto_mail@netping.ru'
+	option smtp_server_authentication_password 'dTRvdjc5cXN3eWEw'
+	option smtp_server_port '2525'
+	option from 'netping_gsm@smtp.netping.ru'
+	option smtp_server_address 'smtpforcustomers.netping.ru'
