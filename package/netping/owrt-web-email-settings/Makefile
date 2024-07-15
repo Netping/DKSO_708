@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-email-settings"
 PKG_VERSION=0.2
-PKG_REV:=dc5ea70b7431d8e554acacbc1bfe837193147cbd
-PKG_RELEASE:=13
+PKG_REV:=d128d0d074fd72833e2775e02c9e132e00fd0aee
+PKG_RELEASE:=14
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-email-settings-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git

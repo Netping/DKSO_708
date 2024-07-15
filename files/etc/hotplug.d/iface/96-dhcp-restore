@@ -1,0 +1,10 @@
+#!/bin/sh
+
+[ "$ACTION" = ifup -o "$ACTION" = ifupdate ] || exit 0
+
+res=$(ip a |grep 'eth0$')
+icount=$(echo "$res"|wc -l)
+[ "$icount" -eq 2 ] || exit 0
+
+/etc/init.d/network restart
+
