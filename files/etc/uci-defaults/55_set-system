@@ -25,3 +25,8 @@ fi
 
 uci set dhcp.lan.ignore='1'
 uci commit dhcp
+
+uci set luci.languages.ru='Русский'
+uci set luci.languages.en='English'
+uci set luci.main.lang='ru'
+uci commit luci
