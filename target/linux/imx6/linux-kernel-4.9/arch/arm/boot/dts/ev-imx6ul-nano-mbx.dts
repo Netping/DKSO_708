@@ -20,7 +20,7 @@
 #define DUAL_ETH   // Comment this line for modules with one Ethernet PHY chip
 
 / {
-	model = "Evodbg i.MX6ULL module";
+	model = "NetPing GSM Gateway 708";
 	compatible = "fsl,imx6ull-14x14-evk", "fsl,imx6ull";
 
 	chosen {

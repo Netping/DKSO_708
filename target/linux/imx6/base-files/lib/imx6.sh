@@ -134,7 +134,7 @@ imx6_board_detect() {
 		name="wandboard"
 		;;
 
-	"Evodbg i.MX6ULL module")
+	"NetPing GSM Gateway 708")
 		name="netping"
 		;;
 

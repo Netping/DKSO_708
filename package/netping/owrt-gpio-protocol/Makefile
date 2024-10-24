@@ -1,9 +1,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owrt-gpio-protocol
-PKG_VERSION=0.3
-PKG_REV:=68b9bb30254924155a0de4afababfe76f1f34707
-PKG_RELEASE:=27
+PKG_VERSION=1.0
+PKG_REV:=2a889e7c7ed3b63453ec8f29abccb0e1a0422155
+PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -22,7 +22,7 @@ define Package/owrt-gpio-protocol
   TITLE:=internal GPIO communication module
   URL:=https://github.com/Netping/OWRT-gpio-protocol
   MAINTAINER:=Egor Zyryanov <info@netping.ru>
-  DEPENDS:=+owrt-log +owrt-plib-pyinotify
+  DEPENDS:=+owrt-log +owrt-plib-pyinotify +libgpiod +python3-gpiod
 endef
 
 define Package/owrt-gpio-protocol/description

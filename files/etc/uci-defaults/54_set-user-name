@@ -1,0 +1,3 @@
+sed -i 's/duser = "root"/duser = "visor"/' /usr/lib/lua/luci/dispatcher.lua
+
+sed -i 's/root/visor/' /etc/config/rpcd

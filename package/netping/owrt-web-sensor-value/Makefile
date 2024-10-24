@@ -1,9 +1,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-sensor-value"
-PKG_VERSION=0.1
-PKG_REV:=a1f471abf4ae1a824329cc44aa9fed404adc190d
-PKG_RELEASE:=1
+PKG_VERSION=0.2
+PKG_REV:=773f63769332562d1aa49faeddbb697d9ce3f31b
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-sensor-value-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git

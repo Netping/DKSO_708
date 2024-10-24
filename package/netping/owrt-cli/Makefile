@@ -44,9 +44,10 @@ define Package/owrt-cli/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{$(ETC_FILES_CLI),$(ETC_FILES_CONFPARSER),$(ETC_FILES_NETPINGCLI)} $(1)$(ETC_FILES_DIR)
 #	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(ETC_FILES_CONFPARSER) $(1)$(ETC_FILES_DIR)
 #	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(ETC_FILES_NETPINGCLI) $(1)$(ETC_FILES_DIR)
-
 	ln -sf $(1)$(ETC_FILES_DIR)$(ETC_FILES_CLI) $(1)$(BIN_DIR)$(CLI_LINK)
+
 endef
+
 
 define Package/owrt-cli/clean
 	rm -rf $(1)$(ETC_FILES_DIR)

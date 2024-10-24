@@ -1,0 +1,62 @@
+
+config sensor 'globals'
+	option default_memo '1wire'
+	list bus 'sensor'
+	list bus 'fake'
+	list bus 'i2c'
+	option default_period '3'
+
+config sensor '1wire_prototype_sensor'
+	option memo 'description_sensor'
+	option bus 'sensor'
+	option family_id ''
+	option rd ''
+	option wr ''
+	option period '3'
+
+config sensor '1wire_prototype_fake'
+	option memo '1wire_fake'
+	option bus 'fake'
+	option id_full ''
+	option period '3'
+
+config sensor '1wire_prototype_i2c'
+	option memo '1wire_i2c'
+	option bus 'i2c'
+	option i2c_bus 'i2c-0'
+	option i2c_addr '0'
+	option max_device '64'
+
+# Delete if family 26 sensors are not used
+config info '26'
+	option memo 'sensor_temperature_26'
+	option bus 'sensor'
+	option family_id '26'
+	option rd 'temperature/humidity'
+	option wr 'offset'
+	option period '3'
+
+# Delete if family 28 sensors are not used
+config info '28'
+	option memo 'sensor_temperature_28'
+	option bus 'sensor'
+	option family_id '28'
+	option rd 'temperature/temperature10/temperature11'
+	option wr 'temphigh/templow'
+	option period '3'
+
+# Delete if bus i2c-0:0 are not used
+config info 'line1'
+	option memo '1wire_i2c-0:0'
+	option bus 'i2c'
+	option i2c_bus 'i2c-0:0'
+	option i2c_addr '0x18'
+	option max_device '10'
+
+# Delete if bus i2c-0:1 are not used
+config info 'line2'
+	option memo '1wire_i2c-0:1'
+	option bus 'i2c'
+	option i2c_bus 'i2c-0:1'
+	option i2c_addr '0x19'
+	option max_device '10'
