@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-email-settings"
 PKG_VERSION=0.2
-PKG_REV:=253bb7665ae9f67e9a882c406a14056a85b8350f
-PKG_RELEASE:=16
+PKG_REV:=ad23cd509c2dac2395a0737328eaa6196ede9fad
+PKG_RELEASE:=17
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-email-settings-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-email-settings
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for email module
   URL:=https://github.com/Netping/OWRT-WEB-email-settings
   MAINTAINER:=Alexander Stepanov <info@netping.ru>

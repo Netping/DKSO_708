@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-pingers"
 PKG_VERSION=0.1
-PKG_REV:=57777dd95ed33da509aa8da2ee193b63998f9c01
-PKG_RELEASE:=10
+PKG_REV:=d206dbc9ce080ca51ce7ca6865ffa1282356ea58
+PKG_RELEASE:=12
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-pingers-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -41,9 +41,15 @@ RUN_SOURCE_FILE:=owrt_pingers_autorun
 RUN_DEST_FILE:=owrt_pingers
 RUN_DIR:=/etc/init.d/
 
+ACL_FILE:=owrt-pingers.json
+ACL_DIR:=/usr/share/acl.d/
 
 define Package/owrt-pingers/conffiles
 	$(CONF_DIR)$(CONF_FILE)
+endef
+
+define Package/owrt-pingers/Configure
+	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 define Package/owrt-pingers/install
@@ -57,12 +63,15 @@ define Package/owrt-pingers/install
 	$(INSTALL_DIR) $(1)$(RUN_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SOURCE_FILE) $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 
+	$(INSTALL_DIR) $(1)$(ACL_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(ACL_FILE) $(1)$(ACL_DIR)
 endef
 
 define Package/owrt-pingers/clean
 	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
 	rm -rf $(1)$(MODULE_FILES_DIR)
 	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
+	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 $(eval $(call BuildPackage,owrt-pingers))

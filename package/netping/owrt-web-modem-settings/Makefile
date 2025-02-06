@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-modem-settings"
 PKG_VERSION=0.1
-PKG_REV:=f1d5dceee558f1b6e2a9f4b11cd8a9d97e63d7db
-PKG_RELEASE:=4
+PKG_REV:=09863804dfa2f140965422bebd69b5fb388908fa
+PKG_RELEASE:=5
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-modem-settings-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-modem-settings
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for modem module
   URL:=https://github.com/Netping/OWRT-WEB-modem-settings
   MAINTAINER:=Nina Hoang <info@netping.ru>

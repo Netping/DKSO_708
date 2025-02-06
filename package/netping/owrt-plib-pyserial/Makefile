@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-pyserial"
 PKG_VERSION:=3.5.0-1
-PKG_REV:=6d526d8efb71113fbb4f7d9ab887e4243c96a0ca
-PKG_RELEASE:=5
+PKG_REV:=b006f4c21df7bb88d6aa05c3f43a348cb77c67a4
+PKG_RELEASE:=7
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-pyserial-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-pyserial
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Python serial 3.5.0 library
   URL:=https://github.com/Netping/OWRT-PLIB-pyserial
   MAINTAINER:=Egor Zyryanov <info@netping.ru>

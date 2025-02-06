@@ -40,10 +40,10 @@ for i in dnsmasq odhcpd; do
 done
 fi
 
-if [ ! -f /etc/config/netping/default/config.tar ]; then  
-  mkdir -p /etc/config/netping/default
-  tar c -C /etc/config -f /etc/config/netping/default/config.tar dhcp network snmpd rpcd dropbear firewall system luci 
-fi
+#if [ ! -f /etc/config/netping/default/config.tar ]; then  
+#  mkdir -p /etc/config/netping/default
+#  tar c -C /etc/config -f /etc/config/netping/default/config.tar dhcp network snmpd rpcd dropbear firewall system luci 
+#fi
 
 #Make default config
 if [ ! -f /etc/netping/config/default/config.tar ]; then  

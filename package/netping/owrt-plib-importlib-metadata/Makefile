@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-importlib-metadata"
 PKG_VERSION:=4.11.1
-PKG_REV:=2dceff16f3fd23c0395cc16c3793e70972ce01bd
-PKG_RELEASE:=2
+PKG_REV:=05a18bac3dad265b08c2a7dc59acde6be74d9380
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-importlib-metadata-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,10 +18,11 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-importlib-metadata
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Python importlib-metadata 4.11.1-1 library
   URL:=https://github.com/Netping/OWRT-PLIB-importlib-metadata
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>
+  DEPENDS:=+owrt-plib-zipp +owrt-plib-typing-extensions
 endef
 
 SITE_PACKAGE_DIR:=/usr/lib/python3.7/site-packages/

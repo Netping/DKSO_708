@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-zipp"
 PKG_VERSION:=3.7.0-1
-PKG_REV:=2198d161dcd250eeb7555df9e92faf7f3cf6e96c
-PKG_RELEASE:=2
+PKG_REV:=2ea8f2a8a4c06ab0ea7ac10f4fc6ecb4d98dfa19
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-zipp-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-zipp
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Python zipp 3.7.0-1 library
   URL:=https://github.com/Netping/OWRT-PLIB-zipp
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

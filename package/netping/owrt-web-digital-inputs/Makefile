@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-digital-inputs"
 PKG_VERSION=0.2
-PKG_REV:=b1da94241074dc5eb9e2749d2807feca106a7cf8
-PKG_RELEASE:=7
+PKG_REV:=14eb59ff3adb81ab876c8fddc549959620961d75
+PKG_RELEASE:=8
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-digital-inputs-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-digital-inputs
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for owrt_digital_inputs module
   URL:=https://github.com/Netping/OWRT-WEB-digital-inputs
   MAINTAINER:=Alexander N <info@netping.ru>

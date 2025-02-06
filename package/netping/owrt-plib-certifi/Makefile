@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-certifi"
 PKG_VERSION:=2024.2.2
-PKG_REV:=1be1e65a0e86d92d553979fb1c9da1bb364d6663
-PKG_RELEASE:=1
+PKG_REV:=9de74808a6e7202e0529d834f8dfaa76eaa988fe
+PKG_RELEASE:=6
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-certifi-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-certifi
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Mozilla’s collection of Root Certificates
   URL:=https://github.com/Netping/OWRT-PLIB-certifi
   MAINTAINER:=NetPing East <info@netping.ru>

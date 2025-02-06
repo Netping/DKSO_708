@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owrt-plib-ubus
 PKG_VERSION:=0.1.1
-PKG_REV:=575132ac37d90e950a42fd66186ccd384c02da1e
-PKG_RELEASE:=2
+PKG_REV:=30d7c0f85e4d706be0e09d48354cd90a69277b8f
+PKG_RELEASE:=7
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-ubus-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-ubus
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Python bindings for ubus
   URL:=https://github.com/Netping/OWRT-PLIB-UBUS
   MAINTAINER:=Mikhail Sadikov <info@netping.ru>

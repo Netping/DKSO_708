@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-reports"
 PKG_VERSION=0.1
-PKG_REV:=76a7aecc6fe9cb4414bf855599ffa5a0477a35e3
-PKG_RELEASE:=9
+PKG_REV:=5cb695ab9732106b0392bfb3ff7ae84ad5e15a58
+PKG_RELEASE:=11
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-reports-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -41,8 +41,15 @@ RUN_DEST_FILE:=owrt_reports
 
 RUN_DIR:=/etc/init.d/
 
+ACL_FILE:=owrt-reports.json
+ACL_DIR:=/usr/share/acl.d/
+
 define Package/owrt-reports/conffiles
 	$(CONF_DIR)$(CONF_FILE)
+endef
+
+define Package/owrt-reports/Configure
+	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 define Package/owrt-reports/install
@@ -55,12 +62,15 @@ define Package/owrt-reports/install
 	$(INSTALL_DIR) $(1)$(RUN_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SOURCE_FILE) $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 
+	$(INSTALL_DIR) $(1)$(ACL_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(ACL_FILE) $(1)$(ACL_DIR)
+
 endef
 
 define Package/owrt-reports/clean
 	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
 	rm -rf $(1)$(MODULE_FILES_DIR)
-
+	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 endef
 

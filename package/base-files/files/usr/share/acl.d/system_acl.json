@@ -1,0 +1,20 @@
+{
+	"user": "visor",
+	"access": {
+		"system": {
+			"methods": [ "board", "info", "reboot", "sysupgrade", "validate_firmware_image" ]
+		},
+		"log": {
+			"methods": [ "read" ]
+		},
+		"network": {
+			"methods": [ "restart", "reload" ]
+		},
+		"network.device": {
+			"methods": [ "status" ]
+		},
+		"uci": {
+			"methods": [ "configs" , "get" , "state", "add", "set", "state", "delete", "rename", "order", "changes", "revert", "commit", "apply", "confirm", "rollback", "reload_config"]
+		}
+	}
+}

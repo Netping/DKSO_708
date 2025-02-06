@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-chardet"
 PKG_VERSION:=4.0.0
-PKG_REV:=6c62bde6ddf5ae317614bc90a60df0d8a99daa25
-PKG_RELEASE:=1
+PKG_REV:=3e19186c985cfadc093177b3a4a376a4531ad5b5
+PKG_RELEASE:=5
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-chardet-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-chardet
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=The Universal Character Encoding Detector
   URL:=https://github.com/Netping/OWRT-PLIB-chardet
   MAINTAINER:=NetPing East <info@netping.ru>

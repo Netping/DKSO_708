@@ -1,4 +1,4 @@
-root:x:0:
+root:x:0:root,visor
 daemon:x:1:
 adm:x:4:
 mail:x:8:

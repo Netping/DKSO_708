@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-pingers"
 PKG_VERSION=0.1
-PKG_REV:=b202ec3f325efc13a34d8e407db988bbaf81a0a7
-PKG_RELEASE:=41
+PKG_REV:=ed4aedf77dbca589145b953ac3b77583c5d3619f
+PKG_RELEASE:=43
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-pingers-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,11 +18,11 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-pingers
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for owrt_pingers module
   URL:=https://github.com/Netping/OWRT-WEB-pingers
   MAINTAINER:=Alexey Lozhanin <info@netping.ru>
-  DEPENDS:=
+  DEPENDS:=+owrt-pingers +luci-base +luci-compat
 endef
 
 define Package/owrt-web-pingers/description

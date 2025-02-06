@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-schedule"
 PKG_VERSION:=1.1.0-1
-PKG_REV:=1cbdaf431b7792793869fa5ec025b97698f5aec1
-PKG_RELEASE:=3
+PKG_REV:=667a77e06a822c1c780a2df0b8f5cfce2061891e
+PKG_RELEASE:=4
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-schedule-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-schedule
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Python schedule 1.1.0-1 library
   URL:=https://github.com/Netping/OWRT-PLIB-schedule
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

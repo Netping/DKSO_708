@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME="owrt-email"
 PKG_VERSION=0.2
-PKG_REV:=99c7c383e5da35b568137333b4aaa435112ae0b8
-PKG_RELEASE=14
+PKG_REV:=3a8abaa718a694cecb5279bb4caa96a36c92bedd
+PKG_RELEASE=16
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-email-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -46,9 +46,15 @@ RUN_SOURCE_FILE:=owrt_email_autorun
 RUN_DEST_FILE:=owrt_email
 RUN_DIR:=/etc/init.d/
 
+ACL_FILE:=owrt-email.json
+ACL_DIR:=/usr/share/acl.d/
 
 define Package/owrt-email/conffiles
 	$(CONF_DIR)$(CONF_FILE)
+endef
+
+define Package/owrt-email/Configure
+	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 define Package/owrt-email/install
@@ -67,6 +73,8 @@ define Package/owrt-email/install
 	$(INSTALL_DIR) $(1)$(RUN_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SOURCE_FILE) $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 
+	$(INSTALL_DIR) $(1)$(ACL_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(ACL_FILE) $(1)$(ACL_DIR)
 endef
 
 define Package/owrt-email/clean
@@ -74,6 +82,7 @@ define Package/owrt-email/clean
 	rm -rf $(1)$(ETC_FILES_DIR)
 ###	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
+	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 $(eval $(call BuildPackage,owrt-email))

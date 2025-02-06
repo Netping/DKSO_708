@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-typing-extensions"
 PKG_VERSION:=4.1.1-1
-PKG_REV:=196ab9fb256f9ece237624c724927a89f401bb5f
-PKG_RELEASE:=2
+PKG_REV:=c469f82ee6f5fd842c41e1976c8811b53b367688
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-typing-extensions-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-typing-extensions
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Python typing-extensions 4.1.1 library
   URL:=https://github.com/Netping/OWRT-PLIB-typing-extensions
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

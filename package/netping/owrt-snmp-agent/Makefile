@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-snmp-agent"
 PKG_VERSION=0.1
-PKG_REV:=8ab25c966de1c0f9f3ba69985d00c37f1086d8c9
-PKG_RELEASE:=19
+PKG_REV:=4264e1c6c33398097c3148ef0997c696c95acacd
+PKG_RELEASE:=21
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-snmp-agent-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -32,7 +32,7 @@ endef
 MODULE_FILE_1:=owrt-snmp-agent-init.py
 MODULE_FILE_2:=owrt-snmp-pass-agent.py
 MODULE_FILE_3:=owrt-snmp-pass-agent.sh
-MODULE_FILES_DIR:=/etc/netping/OWRT-snmp-agent/
+MODULE_FILES_DIR:=/etc/netping/owrt-snmp-agent/
 
 RUN_SOURCE_FILE:=owrt-snmp-agent-autorun
 RUN_DEST_FILE:=owrt-snmp-agent

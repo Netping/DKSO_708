@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-netping-schema"
 PKG_VERSION=0.2
-PKG_REV:=715374fc79ae265de64ed0510803f9bf5930a23e
-PKG_RELEASE:=57
+PKG_REV:=a7cfe3f33559cab2262df598e9908a50c114e485
+PKG_RELEASE:=59
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-netping-schema-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-netping-schema
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface customization module
   URL:=https://github.com/Netping/OWRT-WEB-netping-schema
   MAINTAINER:=Alexey Lozhanin <info@netping.ru>
@@ -59,6 +59,7 @@ define Package/owrt-web-netping-schema/install
 	
 	$(INSTALL_DIR) $(1)$(I18N_DIR)
 	$(CP) $(PKG_BUILD_DIR)$(I18N_SOURCE_FILES) $(1)$(I18N_DIR)
+
 
 endef
 

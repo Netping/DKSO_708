@@ -1,11 +1,11 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:="owrt-notifications"
+PKG_NAME=owrt-notifications
 PKG_VERSION=1.2
 PKG_REV:=6439672a4b4a14507df8e53cacc5da26ca1f27f4
 PKG_RELEASE:=13
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-notifications-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=git@github.com:Netping/OWRT-notifications.git
 PKG_SOURCE_VERSION:=$(PKG_REV)
@@ -42,7 +42,7 @@ RC_RUN_DEST_FILE:=S90OWRT-Notifications
 RUN_DIR:=/etc/init.d/
 RC_RUN_DIR:=/etc/rc.d/
 
-define Package/owrt-notifications/conffiles
+define Package/$(PKG_NAME)/conffiles
 	$(CONF_DIR)$(CONF_FILE)
 endef
 

@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-idna"
 PKG_VERSION:=3.3
-PKG_REV:=d555cf94c7de5df48c3671692878bf0c11fb2384
-PKG_RELEASE:=1
+PKG_REV:=737b0638d96b20fcc5c8186b71d44d649d77570d
+PKG_RELEASE:=5
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-idna-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-idna
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Internationalized Domain Names in Applications (IDNA) lib
   URL:=https://github.com/Netping/OWRT-PLIB-idna
   MAINTAINER:=NetPing East <info@netping.ru>

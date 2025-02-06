@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-reports"
 PKG_VERSION=0.1
-PKG_REV:=fdb1c366b1bdcc0e5794362de2f83c08558369b7
-PKG_RELEASE:=6
+PKG_REV:=84f4860348d7035210b1fd14194f513fb41f967b
+PKG_RELEASE:=7
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-reports-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,11 +18,11 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-reports
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for reports module
   URL:=https://github.com/Netping/OWRT-WEB-reports
   MAINTAINER:=Alexey Lozhanin <info@netping.ru>
-  DEPENDS:= +owrt-reports
+  DEPENDS:= +owrt-reports +luci-base +luci-compat
 endef
 
 define Package/owrt-web-reports/description

@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-sms-protocol"
 PKG_VERSION=0.2
-PKG_REV:=78e8651aa67c7a592431b03861f0e301ac1ac2a3
-PKG_RELEASE:=39
+PKG_REV:=fa08fca1e6f2ffa0fdced23003ed2621731bb083
+PKG_RELEASE:=43
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-sms-protocol-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -22,7 +22,7 @@ define Package/owrt-sms-protocol
   TITLE:=Modem protocol support module
   URL:=https://github.com/Netping/OWRT-sms-Protocol
   MAINTAINER:=Egor Zyryanov <info@netping.ru>
-  DEPENDS:= +owrt-log +owrt-plib-pyserial
+  DEPENDS:= +owrt-log +owrt-plib-pyserial +owrt-plib-ubus
 endef
 
 define Package/owrt-sms-protocol/description
@@ -31,7 +31,7 @@ endef
 
 CONF_FILE_1:=modemstaticonf
 CONF_FILE_2:=modemconf
-CONF_DIR=/etc/config/
+CONF_DIR:=/etc/config/
 
 MODULE_FILES_1:=modemproto.py
 MODULE_FILES_2:=modemerror.py
@@ -46,10 +46,13 @@ CLI_COMMANDS_DIR:=commands/
 RUN_SRC_FILES:=owrt_modem-protocol_autorun
 RUN_DST_FILES:=owrt_modem-protocol
 
-SNMP_AGENT_DIR=/etc/netping/owrt-sms-protocol/snmp_oid/
-SNMP_AGENT_FILES=owrtsmsprotocol_oid.py
+SNMP_AGENT_DIR:=/etc/netping/owrt-sms-protocol/snmp_oid/
+SNMP_AGENT_FILES:=owrtsmsprotocol_oid.py
 
 RUN_DIR:=/etc/init.d/
+
+ACL_DIR:=/usr/share/acl.d/
+ACL_FILE:=owrt-sms-protocol.json
 
 MODEM_TYPE:=SARA_U270_Modem
 
@@ -61,6 +64,10 @@ endef
 define Package/owrt-sms-protocol/conffiles
 	$(CONF_DIR)$(CONF_FILE1)
 	$(CONF_DIR)$(CONF_FILE2)
+endef
+
+define Package/owrt-sms-protocol/Configure
+	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 define Package/owrt-sms-protocol/install
@@ -86,6 +93,10 @@ define Package/owrt-sms-protocol/install
 	$(INSTALL_DIR) $(1)$(RUN_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SRC_FILES) $(1)$(RUN_DIR)$(RUN_DST_FILES)	
 
+	#Install ACL files
+	$(INSTALL_DIR) $(1)$(ACL_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(ACL_FILE) $(1)$(ACL_DIR)
+
 endef
 
 define Package/owrt-sms-protocol/clean
@@ -94,6 +105,7 @@ define Package/owrt-sms-protocol/clean
 	rm -f $(1)$(CONF_FILE_1)
 	rm -f $(1)$(CONF_FILE_2)
 	rm -f $(1)$(RUN_DIR)$(RUN_DST_FILES)
+	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 
 endef
 

@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owrt-plib-puresnmp
 PKG_VERSION:=1.11.0-1
-PKG_REV:=7decf19f1772b32208d2bcde5557fa8c51ce2278
-PKG_RELEASE:=6
+PKG_REV:=1d64a1fe28d12dd09f297b50c1e3e63843f206d1
+PKG_RELEASE:=7
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-puresnmp-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-puresnmp
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=PureSNMP and dependencies
   URL:=https://github.com/Netping/OWRT-PLIB-puresnmp
   MAINTAINER:=Michael Sadikov <info@netping.ru>

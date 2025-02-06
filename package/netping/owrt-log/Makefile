@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME="owrt-log"
 PKG_VERSION=1.1
-PKG_REV:=cbb10522c0afe2ff73e5e92d5fd8bc6a4d84c840
-PKG_RELEASE=13
+PKG_REV:=f16185690c225340bef78d2153e025d60cadf573
+PKG_RELEASE=16
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-log-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -48,8 +48,15 @@ RC_RUN_DEST_FILE:=S88OWRT-Log
 RUN_DIR:=/etc/init.d/
 RC_RUN_DIR:=/etc/rc.d/
 
+ACL_DIR:=/usr/share/acl.d/
+ACL_FILE:=owrt-log.json
+
 define Package/owrt-log/conffiles
 	$(CONF_DIR)$(CONF_FILE)
+endef
+
+define Package/owrt-log/Configure
+	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 define Package/owrt-log/install
@@ -69,12 +76,17 @@ define Package/owrt-log/install
 	$(INSTALL_DIR) $(1)$(RUN_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SOURCE_FILE) $(1)$(RUN_DIR)$(RUN_DEST_FILE)	
 	
+	$(INSTALL_DIR) $(1)$(ACL_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(ACL_FILE) $(1)$(ACL_DIR)
+
 endef
 
 define Package/owrt-log/clean
+	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
 	rm -rf $(1)$(ETC_FILES_DIR)
 	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
+
 endef
 
 $(eval $(call BuildPackage,owrt-log))

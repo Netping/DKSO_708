@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-snmp-protocol"
 PKG_VERSION=0.1
-PKG_REV:=627d77973f382d83d43615eae785e96bf7b91609
-PKG_RELEASE:=5
+PKG_REV:=d706afdebf25ca83225a215c34d3dbd73fcf002a
+PKG_RELEASE:=6
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-snmp-protocol-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -22,7 +22,7 @@ define Package/owrt-snmp-protocol
   TITLE:=SNMP protocol support module
   URL:=https://github.com/Netping/OWRT_SNMP_Protocol
   MAINTAINER:=Aleksandr Shenshin <info@netping.ru>
-  DEPENDS:=
+  DEPENDS:=owrt-plib-puresnmp +owrt-log
 endef
 
 define Package/owrt-snmp-protocol/description

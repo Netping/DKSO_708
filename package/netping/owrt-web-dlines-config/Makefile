@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-dlines-config"
 PKG_VERSION=0.1
-PKG_REV:=c8419ca2cfc31479157a8940d74170936310cb5c
-PKG_RELEASE:=6
+PKG_REV:=20c8d563e96a8cb0a72eb622679f040dd89b694f
+PKG_RELEASE:=7
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-dlines-config-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-dlines-config
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for configuration IO lines
   URL:=https://github.com/Netping/OWRT-WEB-dlines-config
   MAINTAINER:=Alexey Lozhanin <info@netping.ru>

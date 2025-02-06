@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owrt-plib-icmplib
 PKG_VERSION:=3.0.2-1
-PKG_REV:=1cf2548e2162a033277a39db9bbd8dadeb802457
-PKG_RELEASE:=1
+PKG_REV:=727296fc1b65abd58f3e77cf466b87481db95486
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-icmplib-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-icmplib
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=ICMPlib and dependencies
   URL:=https://github.com/Netping/OWRT-PLIB-icmplib
   MAINTAINER:=Leonid Khlebushchev <info@netping.ru>

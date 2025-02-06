@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-requests"
 PKG_VERSION:=2.31.0
-PKG_REV:=1c6419b4b0ea858cc820190176c85512aedfbed3
-PKG_RELEASE:=2
+PKG_REV:=a1a7002e39dd3c4e5508f52b3fe38d9196390995
+PKG_RELEASE:=5
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-requests-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-requests
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Python requests 2.31.0 library
   URL:=https://github.com/Netping/OWRT-PLIB-requests
   MAINTAINER:=NetPing East <info@netping.ru>

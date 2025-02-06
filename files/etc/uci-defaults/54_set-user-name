@@ -1,3 +1,13 @@
 sed -i 's/duser = "root"/duser = "visor"/' /usr/lib/lua/luci/dispatcher.lua
+sed -i 's/root/visor/' /www/luci-static/resources/view/system/password.js
 
-sed -i 's/root/visor/' /etc/config/rpcd
+if [ "$(uci get rpcd.@login[1].username)" != "visor" ]; then 
+user=$(uci add rpcd login)
+uci set rpcd.$user.login = 'login'
+uci set rpcd.$user.username='visor'
+uci set rpcd.$user.password='$p$visor'
+uci add_list rpcd.$user.read='*'
+uci add_list rpcd.$user.write='*'
+uci commit rpcd
+fi
+

@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-sensor-value"
 PKG_VERSION=0.2
-PKG_REV:=773f63769332562d1aa49faeddbb697d9ce3f31b
-PKG_RELEASE:=3
+PKG_REV:=821b84452e99b6ee9eaaa0b27cd0249024a45c0d
+PKG_RELEASE:=14
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-sensor-value-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,18 +18,18 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-sensor-value
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for owrt-sensor-value module
   URL:=https://github.com/Netping/OWRT-WEB-sensor-value
   MAINTAINER:=Alexander N <info@netping.ru>
-  DEPENDS:=
+  DEPENDS:= +owrt-sensor-value +luci-base
 endef
 
 define Package/owrt-web-sensor-value/description
  Web interface for owrt-sensor-value module
 endef
 
-MODULE_NAME:=owrt_web_sensor_value
+MODULE_NAME:=owrt-web-sensor-value
 MODULE_FILES_DIR:=/usr/lib/lua/luci/
 ACL_FILES_DIR:=/usr/share/rpcd/acl.d/
 STATIC_FILES_DIR:=/www/luci-static/resources/view/

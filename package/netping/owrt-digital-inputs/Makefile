@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-digital-inputs"
 PKG_VERSION=0.2
-PKG_REV:=8a25d8bf626f0b3af9b1463350f248b429851f2d
-PKG_RELEASE:=35
+PKG_REV:=54e1fcf060f672c7b36c34b3b9daa88251943edf
+PKG_RELEASE:=42
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-digital-inputs-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -22,7 +22,7 @@ define Package/owrt-digital-inputs
   TITLE:=input lines module
   URL:=https://github.com/Netping/OWRT-digital-inputs
   MAINTAINER:=Egor Zyryanov <info@netping.ru>
-  DEPENDS:= +owrt-log +owrt-snmp-protocol
+  DEPENDS:= +owrt-log +owrt-snmp-protocol +owrt-plib-ubus
 endef
 
 define Package/owrt-digital-inputs/description
@@ -33,7 +33,7 @@ MODULE_FILES_DIR:=/usr/lib/python3.7/site-packages/
 
 ETC_FILE1:=Configname
 ETC_FILE2:= owrt_digital_inputs.py
-ETC_FILES_DIR:=/etc/netping/OWRT-digital-inputs
+ETC_FILES_DIR:=/etc/netping/owrt-digital-inputs
 
 CONF_FILE_1:=diginsensorconf
 CONF_FILE_2:=diginstaticonf
@@ -44,19 +44,24 @@ CLI_HELP_FILE:=Help
 CLI_CONFIGNAME:=Configname
 CLI_COMMANDS_DIR:=commands
 
-SNMP_AGENT_DIR=/etc/netping/OWRT-digital-inputs/snmp_oid
-SNMP_AGENT_FILE=owrtdigitalinputs_oid.py
+SNMP_AGENT_DIR:=/etc/netping/owrt-digital-inputs/snmp_oid
+SNMP_AGENT_FILE:=owrtdigitalinputs_oid.py
 
 RUN_SOURCE_FILE:=owrt_digital_inputs_autorun
 RUN_DEST_FILE:=owrt_digital_inputs
 RUN_DIR:=/etc/init.d
 
+ACL_DIR:=/usr/share/acl.d/
+ACL_FILE:=owrt-digital-inputs.json
 
 define Package/owrt-digital-inputs/conffiles
 	$(CONF_DIR)/$(CONF_FILE_1)
 	$(CONF_DIR)/$(CONF_FILE_2)
 endef
 
+define Package/owrt-digital-inputs/Configure
+	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
+endef
 
 define Package/owrt-digital-inputs/install
 	#Install config files
@@ -82,6 +87,9 @@ define Package/owrt-digital-inputs/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(SOURCE_CLI_COMMANDS_DIR)/* $(1)$(ETC_FILES_DIR)/$(CLI_COMMANDS_DIR)
 	$(CP) $(PKG_BUILD_DIR)/{$(CLI_HELP_FILE),$(CLI_CONFIGNAME)} $(1)$(ETC_FILES_DIR)/
 
+	#Install ACL files
+	$(INSTALL_DIR) $(1)$(ACL_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(ACL_FILE) $(1)$(ACL_DIR)
 endef
 
 define Package/owrt-digital-inputs/clean
@@ -91,6 +99,7 @@ define Package/owrt-digital-inputs/clean
 ###	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 	rm -f $(1)$(RUN_DIR)/$(RUN_DEST_FILE)
 	rm -f $(1)$(SNMP_AGENT_DIR)/$(SNMP_AGENT_FILE)
+	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 $(eval $(call BuildPackage,owrt-digital-inputs))

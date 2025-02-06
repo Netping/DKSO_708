@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-click"
 PKG_VERSION:=8.0.3
-PKG_REV:=c9b6d2d1c1189d9373a197c349aa30c2fe01ba80
-PKG_RELEASE:=1
+PKG_REV:=d5a480388c9a3861e9c7d40124e66b301d437d66
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-click-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-click
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=Composable command line interface toolkit
   URL:=https://github.com/Netping/OWRT-PLIB-click
   MAINTAINER:=Michael Sadikov <info@netping.ru>

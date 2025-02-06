@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-http-agent"
 PKG_VERSION=0.1
-PKG_REV:=261157fb054136fdbcf0d9704e2b8ba4ab892f7a
-PKG_RELEASE:=1
+PKG_REV:=a5f12298d278a9cfdd8ab4c0cc2d67aef2962273
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-http-agent-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -22,7 +22,7 @@ define Package/owrt-http-agent
   TITLE:=HTTP agent module
   URL:=https://github.com/Netping/OWRT-http-agent
   MAINTAINER:=Netping <info@netping.ru>
-  
+  DEPENDS:=+owrt-plib-ubus
 endef
 
 define Package/owrt-http-agent/description

@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-notifications"
 PKG_VERSION=0.2
-PKG_REV:=c51616bfce30b7fe2526122783171f45e171bba8
-PKG_RELEASE:=7
+PKG_REV:=3fa2be2c0878a9a98f7583a5502759887feb4773
+PKG_RELEASE:=8
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-notifications-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,11 +18,11 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-notifications
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for notifications module
   URL:=https://github.com/Netping/OWRT-WEB-Notifications
   MAINTAINER:=Alexey Lozhanin <info@netping.ru>
-  DEPENDS:= +owrt-notifications
+  DEPENDS:= +owrt-notifications +luci-base +luci-compat
 endef
 
 define Package/owrt-web-notifications/description

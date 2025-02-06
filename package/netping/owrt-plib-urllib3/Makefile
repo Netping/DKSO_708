@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-plib-urllib3"
 PKG_VERSION:=2.2.0
-PKG_REV:=595d85e74581344f00ba0181b65a86f86c70c5fc
-PKG_RELEASE:=1
+PKG_REV:=e50722848be637281b89e689ef6dc2741e6d3b94
+PKG_RELEASE:=5
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-plib-urllib3-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-plib-urllib3
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=PLIB
   TITLE:=HTTP library with thread-safe connection pooling, file post, and more.
   URL:=https://github.com/Netping/OWRT-PLIB-urllib3
   MAINTAINER:=NetPing East <info@netping.ru>

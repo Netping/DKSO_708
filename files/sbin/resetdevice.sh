@@ -1,9 +1,9 @@
 #!/bin/sh
 
 echo "Restore default settings"
-if [ -e /etc/config/netping/default/config.tar ]
+if [ -e /etc/netping/config/default/config.tar ]
 then
-	tar x -f /etc/config/netping/default/config.tar -C /etc/config
+	tar x -f /etc/netping/config/default/config.tar -C /etc/config
 else
 	echo "Default settings not found"
 fi

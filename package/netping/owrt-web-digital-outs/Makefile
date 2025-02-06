@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=owrt-web-digital-outs
 PKG_VERSION=0.2
-PKG_REV:=22789440373e5bc62c31f227e9517d5aa9937144
-PKG_RELEASE:=4
+PKG_REV:=812e46576facda5cba44e8383fdd8a6e01d8f3e3
+PKG_RELEASE:=5
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/owrt-web-digital-outs
   SECTION:=netping
   CATEGORY:=NetPing
-  SUBMENU:=Base
+  SUBMENU:=WEB-APP
   TITLE:=web interface for binary outputs control module
   URL:=https://github.com/Netping/OWRT-WEB-Digital-outs
   MAINTAINER:=Aleksey Lozhanin <info@netping.ru>

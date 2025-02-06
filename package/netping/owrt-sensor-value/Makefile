@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-sensor-value"
 PKG_VERSION=0.3
-PKG_REV:=1b290ca327b91cbe4dca81c2d2b60c031e04eccd
-PKG_RELEASE:=87
+PKG_REV:=3b06abc34daaf7ce5ffaad3e80c3fce6e18940de
+PKG_RELEASE:=105
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-sensor-value-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -35,18 +35,29 @@ CONF_FILES:=owrt-sensor-value
 CONF_DIR:=/etc/config/
 
 ETC_FILES:=owrt-sensor-value.py
-ETC_FILES_DIR:=/etc/netping/OWRT-sensor-value/
+ETC_FILES_DIR:=/etc/netping/$(PKG_NAME)/
 
 CLI_COMMANDS_DIR:=commands
 CLI_HELP_FILE:=Help
 CLI_CONFIGNAME:=Configname
 
+TEMPLATES:=templates
+
+SNMP_AGENT_DIR:=snmp_oid
+
 RUN_SOURCE_FILE:=owrt_sensor_value_autorun
 RUN_DEST_FILE:=owrt-sensor-value
 RUN_DIR:=/etc/init.d/
 
+ACL_FILE:=owrt-sensor-value.json
+ACL_DIR:=/usr/share/acl.d/
+
 define Package/owrt-sensor-value/conffiles
 	$(CONF_DIR)$(CONF_FILES)
+endef
+
+define Package/owrt-sensor-value/Configure
+	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 define Package/owrt-sensor-value/install
@@ -60,9 +71,20 @@ define Package/owrt-sensor-value/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(CLI_COMMANDS_DIR)/* $(1)$(ETC_FILES_DIR)$(CLI_COMMANDS_DIR)
 	$(CP) $(PKG_BUILD_DIR)/{$(CLI_HELP_FILE),$(CLI_CONFIGNAME)} $(1)$(ETC_FILES_DIR)
 
+	$(INSTALL_DIR) $(1)$(ETC_FILES_DIR)$(TEMPLATES)
+	cp -r $(PKG_BUILD_DIR)/$(TEMPLATES)/* $(1)$(ETC_FILES_DIR)$(TEMPLATES)
+
+	$(INSTALL_DIR) $(1)$(ETC_FILES_DIR)$(SNMP_AGENT_DIR)
+	cp -r $(PKG_BUILD_DIR)/$(SNMP_AGENT_DIR)/* $(1)$(ETC_FILES_DIR)$(SNMP_AGENT_DIR)
+
+
 	$(INSTALL_DIR) $(1)$(RUN_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(RUN_SOURCE_FILE) $(1)$(RUN_DIR)$(RUN_DEST_FILE)
 ###	ln -s $(1)$(RUN_DIR)$(RUN_DEST_FILE) $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
+
+	$(INSTALL_DIR) $(1)$(ACL_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(ACL_FILE) $(1)$(ACL_DIR)
+
 endef
 
 define Package/owrt-sensor-value/clean
@@ -70,6 +92,7 @@ define Package/owrt-sensor-value/clean
 	rm -rf $(1)$(ETC_FILES_DIR)
 ###	rm -f $(1)$(RC_RUN_DIR)$(RC_RUN_DEST_FILE)
 	rm -f $(1)$(RUN_DIR)$(RUN_DEST_FILE)
+	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
 $(eval $(call BuildPackage,owrt-sensor-value))
