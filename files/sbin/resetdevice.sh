@@ -10,6 +10,6 @@ fi
 
 echo "Restore default password"
 
-echo -e "ping\nping\n" | passwd > /dev/null
+echo -e "ping\nping\n" | passwd visor> /dev/null
 
 reboot

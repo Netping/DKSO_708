@@ -134,7 +134,7 @@ imx6_board_detect() {
 		name="wandboard"
 		;;
 
-	"NetPing GSM Gateway 708")
+	"NetPing GSM Gateway 708G06")
 		name="netping"
 		;;
 

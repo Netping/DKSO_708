@@ -4,7 +4,7 @@ config relay 'globals'
 	list protocol 'gpio.реле устройства NetPing по GPIO'
 
 config relay 'max_relays'
-	option max_snmp_relays '64'
+	option max_snmp_relays '32'
 	option max_gpio_relays '6'
 
 config relay 'relay_prototype_snmp'
