@@ -1,27 +1,38 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 
-#Generate MAC-addresses for Ethernet ports
-if [ ! -f /etc/macaddr ]; then
-    touch /etc/macaddr
-    mac1=00:a3`hexdump -n4 -e'4/1 ":%02x"' /dev/urandom`
-    mac2=00:a3`hexdump -n4 -e'4/1 ":%02x"' /dev/urandom`
 
-    #echo "MAC1: $mac1"
-    #echo "MAC2: $mac2"
-
-    touch /etc/macaddr
-    echo "$mac1 eth0" >> /etc/macaddr
-    echo "$mac2 eth1" >> /etc/macaddr
-	
-	chmod +x /sbin/setmac.sh
-	/sbin/setmac.sh
-fi
-
+#!/bin/bash
 
 #Create serial number file
 chmod +x /sbin/getid.sh
 /sbin/getid.sh
+
+sync
+
+#Generate MAC-addresses for Ethernet ports
+if [ ! -f /etc/macaddr ]; then
+
+  if [[ -f "/tmp/unique_id.txt" ]]; then
+    # Читаем серийный номер из файла (обрезаем пробелы и переводы строк)
+    serial_number=$(tr -d '[:space:]' < "/tmp/unique_id.txt" | tr 'a-f' 'A-F')
+    
+    chmod +x /sbin/generate_macs.sh
+    /sbin/generate_macs.sh "$serial_number"
+
+    sync 
+  fi
+  
+ 
+
+  if [[ -f "/etc/macaddr" ]]; then
+    chmod +x /sbin/setmac.sh
+    /sbin/setmac.sh
+
+  fi
+	
+fi
+
 
 #Enable or disable internal DHCP and DNS servers
 if [ "$(uci get dhcp.lan.ignore)" = "1" ]; then 
@@ -40,20 +51,11 @@ for i in dnsmasq odhcpd; do
 done
 fi
 
-#if [ ! -f /etc/config/netping/default/config.tar ]; then  
-#  mkdir -p /etc/config/netping/default
-#  tar c -C /etc/config -f /etc/config/netping/default/config.tar dhcp network snmpd rpcd dropbear firewall system luci 
-#fi
-
 #Make default config
 if [ ! -f /etc/netping/config/default/config.tar ]; then  
   mkdir -p /etc/netping/config/default
   tar c -C /etc/config -f /etc/netping/config/default/config.tar dhcp network snmpd rpcd dropbear firewall system luci 
 fi
-
-#Stop flashing CPU led after full boot
-#sleep 20
-#echo "0" > /sys/class/leds/yellow:cpu1/delay_off
 
 
 exit 0

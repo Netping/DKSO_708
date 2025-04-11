@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-pingers"
 PKG_VERSION=0.1
-PKG_REV:=ed4aedf77dbca589145b953ac3b77583c5d3619f
-PKG_RELEASE:=43
+PKG_REV:=825dac04f2a4f9c7bd3117a4b0c28bf7897cb1ee
+PKG_RELEASE:=48
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-pingers-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -38,18 +38,23 @@ LUCI_CONTROLLER_DIR:=/usr/lib/lua/luci/controller/owrt_web_pingers/
 LUCI_VIEW_DIR:=/usr/lib/lua/luci/view/owrt_web_pingers/
 WWW_STATUS_DIR:=/www/cgi-bin/
 WWW_SCC_JS:=/www/luci-static/netping/
+I18N_FILES = i18n/*.lmo
+I18N_FILES_DIR = /usr/lib/lua/luci/i18n/
 
 define Package/owrt-web-pingers/install
 	mkdir -p $(1)$(LUCI_CONTROLLER_DIR)
 	mkdir -p $(1)$(LUCI_VIEW_DIR)
 	mkdir -p $(1)$(WWW_STATUS_DIR)
 	mkdir -p $(1)$(WWW_SCC_JS)
+	mkdir -p $(1)$(I18N_FILES_DIR)
 	cp -r $(PKG_BUILD_DIR)$(LUCI_SOURCE_DIR)index.lua $(1)$(LUCI_CONTROLLER_DIR)
 	cp -r $(PKG_BUILD_DIR)$(LUCI_SOURCE_DIR)*.htm $(1)$(LUCI_VIEW_DIR)
 	cp -r $(PKG_BUILD_DIR)$(WWW_SOURCE_DIR)*.cgi $(1)$(WWW_STATUS_DIR)
 	cp -r $(PKG_BUILD_DIR)$(WWW_SOURCE_DIR)owrt_web_pingers.* $(1)$(WWW_SCC_JS)
+	cp -r $(PKG_BUILD_DIR)/$(I18N_FILES) $(1)$(I18N_FILES_DIR)
 	chmod +x $(1)$(WWW_STATUS_DIR)*.cgi
 endef
+
 
 define Package/owrt-web-pingers/remove
 	rm -f $(1)$(WWW_STATUS_DIR)pinger_status.cgi
@@ -57,6 +62,7 @@ define Package/owrt-web-pingers/remove
 	rm -f $(1)$(WWW_SCC_JS)owrt_web_pingers.*
 	rm -rf $(1)$(LUCI_CONTROLLER_DIR)
 	rm -rf $(1)$(LUCI_VIEW_DIR)
+	rm -rf $(1)$(I18N_FILES_DIR)owrt-web-pingers.*.lmo
 endef
 
 $(eval $(call BuildPackage,owrt-web-pingers))

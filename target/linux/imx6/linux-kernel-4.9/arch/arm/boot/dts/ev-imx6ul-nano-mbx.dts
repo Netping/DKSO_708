@@ -142,6 +142,22 @@
 	};
 };
 
+&gpio1 {
+    gpio12 {
+        gpio-hog;
+        gpios = <12 0>;
+        output-high;
+        line-name = "GPIO12";
+    };
+
+    gpio15 {
+        gpio-hog;
+        gpios = <15 0>;
+        output-high;
+        line-name = "GPIO15";
+    };
+};
+
 &cpu0 {
 	arm-supply = <&reg_arm>;
 	soc-supply = <&reg_soc>;
@@ -563,7 +579,6 @@
 				MX6UL_PAD_SNVS_TAMPER5__GPIO5_IO05      0x17088
 			>;
 		};
-
 	};
 };
 

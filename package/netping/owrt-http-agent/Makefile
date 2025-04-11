@@ -43,10 +43,14 @@ RUN_DEST_FILE:=owrt_http-agent
 RUN_DIR:=/etc/init.d/
 
 
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) $(CONF_FILE) $(PKG_BUILD_DIR)
+endef
+
 define Package/owrt-http-agent/conffiles
 	$(CONF_DIR)$(CONF_FILE)
 endef
-
 
 define Package/owrt-http-agent/install
 	$(INSTALL_DIR) $(1)$(MODULE_FILES_DIR)

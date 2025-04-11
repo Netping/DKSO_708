@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-pingers"
 PKG_VERSION=0.1
-PKG_REV:=d206dbc9ce080ca51ce7ca6865ffa1282356ea58
-PKG_RELEASE:=12
+PKG_REV:=2eef7bf297c38f71948dd7916fafefe839ce3e09
+PKG_RELEASE:=16
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-pingers-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -50,6 +50,12 @@ endef
 
 define Package/owrt-pingers/Configure
 	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
+endef
+
+
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) $(CONF_FILE) $(PKG_BUILD_DIR)
 endef
 
 define Package/owrt-pingers/install

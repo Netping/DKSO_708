@@ -5,7 +5,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=dkso-708
 PKG_VERSION:=1.5
 PKG_MAINTAINER:=Mikhail Sadikov <info@netping.ru>
-PKG_RELEASE:=4
+PKG_RELEASE:=15
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/dkso-708-$(PKG_VERSION)
 
@@ -29,6 +29,7 @@ define Build/Prepare
 	$(CP) opkg-keys/Makefile $(PKG_BUILD_DIR)/
 	$(CP) customfeeds.conf $(PKG_BUILD_DIR)/
 	$(CP) openwrt_version $(PKG_BUILD_DIR)/
+	sed -i 's/PKG_VERSION/$(PKG_VERSION).$(PKG_RELEASE)/' $(PKG_BUILD_DIR)/openwrt_version 
 endef
 
 Build/Compile=

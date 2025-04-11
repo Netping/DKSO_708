@@ -50,6 +50,11 @@ define Package/owrt-1wire-protocol/Configure
 	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
 endef
 
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) $(CONF_FILE) $(PKG_BUILD_DIR)
+endef
+
 define Package/owrt-1wire-protocol/install
 	$(INSTALL_DIR) $(1)$(CONF_DIR)
 	$(INSTALL_DIR) $(1)$(MODULE_FILES_DIR)

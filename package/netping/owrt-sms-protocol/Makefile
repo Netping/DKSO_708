@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-sms-protocol"
 PKG_VERSION=0.2
-PKG_REV:=fa08fca1e6f2ffa0fdced23003ed2621731bb083
-PKG_RELEASE:=43
+PKG_REV:=318d9d22c0af747673e2517d5be77d19ed8ef537
+PKG_RELEASE:=47
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-sms-protocol-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -62,12 +62,18 @@ define Package/owrt-sms-protocol/preinst
 endef
 
 define Package/owrt-sms-protocol/conffiles
-	$(CONF_DIR)$(CONF_FILE1)
-	$(CONF_DIR)$(CONF_FILE2)
+	$(CONF_DIR)$(CONF_FILE_1)
+	$(CONF_DIR)$(CONF_FILE_2)
 endef
 
 define Package/owrt-sms-protocol/Configure
 	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
+endef
+
+
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) {$(CONF_FILE_1),$(CONF_FILE_2)} $(PKG_BUILD_DIR)
 endef
 
 define Package/owrt-sms-protocol/install
@@ -82,7 +88,7 @@ define Package/owrt-sms-protocol/install
 	#Install SNMP agent files
 #	mkdir -p $(1)$(ETC_FILES_DIR)$(SNMP_AGENT_DIR)
 	$(INSTALL_DIR) $(1)$(SNMP_AGENT_DIR)
-	$(CP) $(PKG_BUILD_DIR)/$(SNMP_AGENT_FILES) $(1)$(SNMP_AGENT_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(SNMP_AGENT_FILES) $(1)$(SNMP_AGENT_DIR)
 	
 	#Install CLI interface files
 	$(INSTALL_DIR) $(1)$(ETC_FILES_DIR)$(CLI_COMMANDS_DIR)
@@ -100,10 +106,11 @@ define Package/owrt-sms-protocol/install
 endef
 
 define Package/owrt-sms-protocol/clean
-	rm -f $(1)$(MODULE_FILES_DIR)$(MODULE_FILES)
+	rm -f $(1)$(MODULE_FILES_DIR)$(MODULE_FILES_1)
+	rm -f $(1)$(MODULE_FILES_DIR)$(MODULE_FILES_2)
 	rm -rf $(1)$(ETC_FILES_DIR)
-	rm -f $(1)$(CONF_FILE_1)
-	rm -f $(1)$(CONF_FILE_2)
+	rm -f $(1)$(CONF_DIR)$(CONF_FILE_1)
+	rm -f $(1)$(CONF_DIR)$(CONF_FILE_2)
 	rm -f $(1)$(RUN_DIR)$(RUN_DST_FILES)
 	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 

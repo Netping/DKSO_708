@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-sensor-value"
 PKG_VERSION=0.3
-PKG_REV:=3b06abc34daaf7ce5ffaad3e80c3fce6e18940de
-PKG_RELEASE:=105
+PKG_REV:=711a8d47419aabd96cfe01309bebd1da4c94e0fb
+PKG_RELEASE:=109
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-sensor-value-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -58,6 +58,12 @@ endef
 
 define Package/owrt-sensor-value/Configure
 	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
+endef
+
+
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) $(CONF_FILES) $(PKG_BUILD_DIR)
 endef
 
 define Package/owrt-sensor-value/install

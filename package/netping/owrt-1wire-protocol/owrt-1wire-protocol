@@ -1,4 +1,3 @@
-
 config sensor 'globals'
 	option default_memo '1wire'
 	list bus 'sensor'

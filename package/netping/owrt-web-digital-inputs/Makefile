@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-digital-inputs"
 PKG_VERSION=0.2
-PKG_REV:=14eb59ff3adb81ab876c8fddc549959620961d75
-PKG_RELEASE:=8
+PKG_REV:=d8298ba9db750bbcb3cef10fbaf56e31a6396c8f
+PKG_RELEASE:=13
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-digital-inputs-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git

@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME=owrt-notifications
 PKG_VERSION=1.2
-PKG_REV:=6439672a4b4a14507df8e53cacc5da26ca1f27f4
-PKG_RELEASE:=13
+PKG_REV:=bf7c2a9e6a1a7a7c2aa0b55870801ea5d4fa6418
+PKG_RELEASE:=26
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -44,6 +44,12 @@ RC_RUN_DIR:=/etc/rc.d/
 
 define Package/$(PKG_NAME)/conffiles
 	$(CONF_DIR)$(CONF_FILE)
+endef
+
+
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) $(CONF_FILE) $(PKG_BUILD_DIR)
 endef
 
 define Package/owrt-notifications/install

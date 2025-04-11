@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-modem-settings"
 PKG_VERSION=0.1
-PKG_REV:=09863804dfa2f140965422bebd69b5fb388908fa
-PKG_RELEASE:=5
+PKG_REV:=fb007e3b5ccaa106446eb71fffe1fb43076d7ba5
+PKG_RELEASE:=6
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-modem-settings-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -52,9 +52,10 @@ define Package/owrt-web-modem-settings/install
 endef
 
 define Package/owrt-web-modem-settings/clean
-	rm -r $(1)$(MODULE_FILES_DIR)
-	rm -r $(1)$(STATIC_FILES_DIR)$(PKG_NAME)s.*
-	rm -r $(1)$(I18N_FILES_DIR)$(PKG_NAME).*.lmo
+	rm -r $(1)$(MODULE_FILES_DIR)controller/$(MODULE_NAME)
+	rm -r $(1)$(MODULE_FILES_DIR)view/$(MODULE_NAME)
+	rm -r $(1)$(STATIC_FILES_DIR)$(MODULE_NAME).*
+	rm -r $(1)$(I18N_FILES_DIR)$(MODULE_NAME).*.lmo
 endef
 
 

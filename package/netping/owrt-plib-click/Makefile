@@ -23,6 +23,7 @@ define Package/owrt-plib-click
   TITLE:=Composable command line interface toolkit
   URL:=https://github.com/Netping/OWRT-PLIB-click
   MAINTAINER:=Michael Sadikov <info@netping.ru>
+  DEPENDS:=+owrt-plib-importlib-metadata +owrt-plib-typing-extensions +owrt-plib-zipp
 endef
 
 define Package/owrt-plib-click/description

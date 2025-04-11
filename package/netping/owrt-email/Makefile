@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME="owrt-email"
 PKG_VERSION=0.2
-PKG_REV:=3a8abaa718a694cecb5279bb4caa96a36c92bedd
-PKG_RELEASE=16
+PKG_REV:=4ea82f49519c91120073b4ddad836539a8ebe471
+PKG_RELEASE=18
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-email-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -55,6 +55,12 @@ endef
 
 define Package/owrt-email/Configure
 	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
+endef
+
+
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) $(CONF_FILE) $(PKG_BUILD_DIR)
 endef
 
 define Package/owrt-email/install

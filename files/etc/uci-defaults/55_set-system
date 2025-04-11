@@ -3,26 +3,6 @@ uci set system.@system[0].hostname='NetpingGSM'
 uci commit system
 fi
 
-if [ "$(uci get system.12V.name)" != "gpio12" ]; then 
-gpio=$(uci add system gpio_switch)
-uci rename system.$gpio='12V'
-uci set system.12V.name='gpio12'
-uci set system.12V.gpio_pin='12'
-uci set system.12V.direction='out'
-uci set system.12V.value='1'
-uci commit system
-fi
-
-if [ "$(uci get system.5V.name)" != "gpio15" ]; then 
-gpio=$(uci add system gpio_switch)
-uci rename system.$gpio='5V'
-uci set system.5V.name='gpio15'
-uci set system.5V.gpio_pin='15'
-uci set system.5V.direction='out'
-uci set system.5V.value='1'
-uci commit system
-fi
-
 uci set dhcp.lan.ignore='1'
 uci commit dhcp
 

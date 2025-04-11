@@ -1,0 +1,19 @@
+config globals 'globals'
+	list protocol 'ICMP'
+	list event 'NONE'
+	list event 'statechanged'
+	option maxpingers 32
+
+config pinger 'pinger_prototype'
+	option name 'Pinger'
+	option description ''
+	option protocol 'ICMP'
+	option state '0'
+
+config rule 'rule_prototype'
+	option name 'Rule'
+	option description ''
+	option state '0'
+	option expression ''
+	option event_true 'NONE'
+	option event_false 'NONE'

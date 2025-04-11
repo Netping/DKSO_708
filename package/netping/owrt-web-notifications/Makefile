@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-notifications"
 PKG_VERSION=0.2
-PKG_REV:=3fa2be2c0878a9a98f7583a5502759887feb4773
-PKG_RELEASE:=8
+PKG_REV:=7a8d1cb6b7a9a27ddf6dbca5d01f62531da43de1
+PKG_RELEASE:=16
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-notifications-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git

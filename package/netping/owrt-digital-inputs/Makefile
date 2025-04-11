@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-digital-inputs"
 PKG_VERSION=0.2
-PKG_REV:=54e1fcf060f672c7b36c34b3b9daa88251943edf
-PKG_RELEASE:=42
+PKG_REV:=df261a8f623526fe7f0f55b2e1b33e5eac10a18f
+PKG_RELEASE:=47
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-digital-inputs-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -61,6 +61,11 @@ endef
 
 define Package/owrt-digital-inputs/Configure
 	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
+endef
+
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) {$(CONF_FILE_1),$(CONF_FILE_2)} $(PKG_BUILD_DIR)
 endef
 
 define Package/owrt-digital-inputs/install

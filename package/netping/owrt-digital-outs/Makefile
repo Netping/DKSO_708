@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-digital-outs"
 PKG_VERSION=0.3
-PKG_REV:=6ef2eb1de684e79e392278955d22039ef91b33d1
-PKG_RELEASE:=94
+PKG_REV:=723af042bbe642bf4ab7dfdf93d251af8f22ba45
+PKG_RELEASE:=98
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-digital-outs-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -64,6 +64,11 @@ define Package/owrt-digital-outs/Configure
 
 endef
 
+
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) {$(CONF_FILE_1),$(CONF_FILE_2)} $(PKG_BUILD_DIR)
+endef
 
 define Package/owrt-digital-outs/install
 	#Install config files

@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-reports"
 PKG_VERSION=0.1
-PKG_REV:=5cb695ab9732106b0392bfb3ff7ae84ad5e15a58
-PKG_RELEASE:=11
+PKG_REV:=60e2c13f611639adbbe4dcd20024f29d13903960
+PKG_RELEASE:=17
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-reports-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -50,6 +50,12 @@ endef
 
 define Package/owrt-reports/Configure
 	chmod 640 $(1)$(ACL_DIR)$(ACL_FILE)
+endef
+
+
+define Build/Prepare
+	$(Build/Prepare/Default)
+	$(CP) $(CONF_FILE) $(PKG_BUILD_DIR)
 endef
 
 define Package/owrt-reports/install
