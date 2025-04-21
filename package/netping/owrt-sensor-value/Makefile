@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-sensor-value"
 PKG_VERSION=0.3
-PKG_REV:=711a8d47419aabd96cfe01309bebd1da4c94e0fb
-PKG_RELEASE:=109
+PKG_REV:=f0f95a05ddaa215ccb95e2eca834d1b2566aa772
+PKG_RELEASE:=111
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-sensor-value-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
