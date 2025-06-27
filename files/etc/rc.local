@@ -1,8 +1,23 @@
-# Put your custom commands here that should be executed once
-# the system init finished. By default this file does nothing.
-
-
 #!/bin/bash
+
+#ADD PCB ID
+echo 11 > /sys/class/gpio/export
+echo 13 > /sys/class/gpio/export
+echo 14 > /sys/class/gpio/export
+echo in > /sys/class/gpio/gpio11/direction
+echo in > /sys/class/gpio/gpio13/direction
+echo in > /sys/class/gpio/gpio14/direction
+bit0=$(cat /sys/class/gpio/gpio14/value)
+bit1=$(cat /sys/class/gpio/gpio11/value)
+bit2=$(cat /sys/class/gpio/gpio13/value)
+
+pcbid=$(( bit0 + (bit1 << 1) + (bit2 << 2) ))
+
+if [ "$pcbid" -eq 0 ]; then
+    echo "1.2-1" > /tmp/pcbid.txt
+else
+    echo "unknown" > /tmp/pcbid.txt
+fi
 
 #Create serial number file
 chmod +x /sbin/getid.sh
