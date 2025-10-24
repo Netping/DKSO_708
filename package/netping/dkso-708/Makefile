@@ -3,9 +3,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dkso-708
-PKG_VERSION:=1.5
+PKG_VERSION:=1.6
 PKG_MAINTAINER:=Mikhail Sadikov <info@netping.ru>
-PKG_RELEASE:=17
+PKG_RELEASE:=3
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/dkso-708-$(PKG_VERSION)
 

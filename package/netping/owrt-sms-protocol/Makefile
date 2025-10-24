@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-sms-protocol"
 PKG_VERSION=0.2
-PKG_REV:=318d9d22c0af747673e2517d5be77d19ed8ef537
-PKG_RELEASE:=47
+PKG_REV:=52d7d1a2293f5c6182e1ffc5ab151bc9ebbe02fe
+PKG_RELEASE:=71
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-sms-protocol-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -22,19 +22,19 @@ define Package/owrt-sms-protocol
   TITLE:=Modem protocol support module
   URL:=https://github.com/Netping/OWRT-sms-Protocol
   MAINTAINER:=Egor Zyryanov <info@netping.ru>
-  DEPENDS:= +owrt-log +owrt-plib-pyserial +owrt-plib-ubus
+  DEPENDS:= +owrt-log +owrt-plib-pyserial +owrt-plib-ubus +python3-dbus +python3-dbus-next +modemmanager
 endef
 
 define Package/owrt-sms-protocol/description
 	Modem protocol support module
 endef
 
-CONF_FILE_1:=modemstaticonf
-CONF_FILE_2:=modemconf
+CONF_FILE=modemconf
 CONF_DIR:=/etc/config/
 
 MODULE_FILES_1:=modemproto.py
 MODULE_FILES_2:=modemerror.py
+MODULE_FILES_3:=dbus_sms_listener.py
 MODULE_FILES_DIR:=/usr/lib/python3.7/
 
 ETC_FILES:=Configname
@@ -54,7 +54,7 @@ RUN_DIR:=/etc/init.d/
 ACL_DIR:=/usr/share/acl.d/
 ACL_FILE:=owrt-sms-protocol.json
 
-MODEM_TYPE:=SARA_U270_Modem
+MODEM_TYPE:=MMModem
 
 define Package/owrt-sms-protocol/preinst
 	#!/bin/sh
@@ -62,8 +62,7 @@ define Package/owrt-sms-protocol/preinst
 endef
 
 define Package/owrt-sms-protocol/conffiles
-	$(CONF_DIR)$(CONF_FILE_1)
-	$(CONF_DIR)$(CONF_FILE_2)
+	$(CONF_DIR)$(CONF_FILE)
 endef
 
 define Package/owrt-sms-protocol/Configure
@@ -73,17 +72,17 @@ endef
 
 define Build/Prepare
 	$(Build/Prepare/Default)
-	$(CP) {$(CONF_FILE_1),$(CONF_FILE_2)} $(PKG_BUILD_DIR)
+	$(CP) $(CONF_FILE) $(PKG_BUILD_DIR)
 endef
 
 define Package/owrt-sms-protocol/install
 	#Install config files
 	$(INSTALL_DIR) $(1)$(CONF_DIR)
-	$(INSTALL_CONF) $(PKG_BUILD_DIR)/{$(CONF_FILE_1),$(CONF_FILE_2)} $(1)$(CONF_DIR)
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/$(CONF_FILE) $(1)$(CONF_DIR)
 	
 	#Install module files
 	$(INSTALL_DIR) $(1)$(MODULE_FILES_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{$(MODULE_FILES_1),$(MODULE_FILES_2)} $(1)$(MODULE_FILES_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{$(MODULE_FILES_1),$(MODULE_FILES_2),$(MODULE_FILES_3)} $(1)$(MODULE_FILES_DIR)
 	
 	#Install SNMP agent files
 #	mkdir -p $(1)$(ETC_FILES_DIR)$(SNMP_AGENT_DIR)
@@ -108,9 +107,9 @@ endef
 define Package/owrt-sms-protocol/clean
 	rm -f $(1)$(MODULE_FILES_DIR)$(MODULE_FILES_1)
 	rm -f $(1)$(MODULE_FILES_DIR)$(MODULE_FILES_2)
+	rm -f $(1)$(MODULE_FILES_DIR)$(MODULE_FILES_3)
 	rm -rf $(1)$(ETC_FILES_DIR)
-	rm -f $(1)$(CONF_DIR)$(CONF_FILE_1)
-	rm -f $(1)$(CONF_DIR)$(CONF_FILE_2)
+	rm -f $(1)$(CONF_DIR)$(CONF_FILE)
 	rm -f $(1)$(RUN_DIR)$(RUN_DST_FILES)
 	rm -f $(1)$(ACL_DIR)$(ACL_FILE)
 

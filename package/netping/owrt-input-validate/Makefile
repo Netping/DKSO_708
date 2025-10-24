@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-input-validate"
 PKG_VERSION:=0.1
-PKG_REV:=61db2089d315503cee41fb9ebdd81276b0a9f52c
-PKG_RELEASE:=8
+PKG_REV:=6a681634885e0fe613407d36e670f5a7e808a19e
+PKG_RELEASE:=15
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-input-validate-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git

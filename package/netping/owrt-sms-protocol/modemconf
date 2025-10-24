@@ -1,5 +1,11 @@
+config globals 'globals'
+    option config_version '1.0'
+
 config modem 'settings'
+    option imei '000000000000000'
     option mode "2g"
+    option autoconnect "0"
+    option apn "internet"
 
 config ussd_commands
     option balance '*100#'

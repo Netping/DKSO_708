@@ -2,8 +2,8 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-netping-schema"
 PKG_VERSION=0.2
-PKG_REV:=7dc8ed26cdf99a8cff0a22f8486e58bf5e32bf99
-PKG_RELEASE:=60
+PKG_REV:=1f7cabb7ffc1709579e1f83f5368d044f2ed93b8
+PKG_RELEASE:=62
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-netping-schema-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git

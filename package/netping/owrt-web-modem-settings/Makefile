@@ -1,9 +1,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:="owrt-web-modem-settings"
-PKG_VERSION=0.1
-PKG_REV:=fb007e3b5ccaa106446eb71fffe1fb43076d7ba5
-PKG_RELEASE:=6
+PKG_VERSION=0.2
+PKG_REV:=e6fddbfeab659f2a402097dc4c24709002d9b0fc
+PKG_RELEASE:=15
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/owrt-web-modem-settings-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git
@@ -21,7 +21,7 @@ define Package/owrt-web-modem-settings
   SUBMENU:=WEB-APP
   TITLE:=web interface for modem module
   URL:=https://github.com/Netping/OWRT-WEB-modem-settings
-  MAINTAINER:=Nina Hoang <info@netping.ru>
+  MAINTAINER:=Dmitry Ivankov <info@netping.ru>
   DEPENDS:=owrt-sms-protocol luci-base luci-compat
 endef
 

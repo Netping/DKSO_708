@@ -1,0 +1,25 @@
+--- ./setup.py	2019-09-12 12:03:47.000000000 +0300
++++ ./setup.py.new	2025-07-05 00:04:54.717688883 +0300
+@@ -53,15 +53,6 @@
+         if not os.path.exists(configure):
+             configure = os.path.join(srcdir, 'autogen.sh')
+ 
+-        subprocess.check_call([
+-                configure,
+-                '--disable-maintainer-mode',
+-                'PYTHON=' + sys.executable,
+-                # Put the documentation, etc. out of the way: we only want
+-                # the Python code and extensions
+-                '--prefix=' + os.path.join(builddir, 'prefix'),
+-            ],
+-            cwd=builddir)
+         make_args = [
+             'pythondir=' + os.path.join(srcdir, self.build_lib),
+             'pyexecdir=' + os.path.join(srcdir, self.build_lib),
+@@ -108,5 +99,5 @@
+         'build_py': BuildPy,
+         'build_ext': BuildExt,
+     },
+-    tests_require=['tap.py'],
++    tests_require=[],
+ )

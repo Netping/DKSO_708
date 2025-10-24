@@ -1,0 +1,3 @@
+uci set network.ModemUSB=interface
+uci set network.ModemUSB.proto='dhcp'
+uci set network.ModemUSB.ifname='usb0'
