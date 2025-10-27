@@ -22,44 +22,44 @@ define Package/owrt-web-email-settings
   TITLE:=web interface for email module
   URL:=https://github.com/Netping/OWRT-WEB-email-settings
   MAINTAINER:=Alexander Stepanov <info@netping.ru>
-  DEPENDS:=
+  DEPENDS:=+owrt-email +owrt-input-validate +luci-base +luci-compat
 endef
 
 define Package/owrt-web-email-settings/description
  Web interface for email module
 endef
 
-MODULE_FILES:=luasrc/controller/owrt_web_email_settings/index.lua
-MODULE_FILES_DIR:=/usr/lib/lua/luci/controller/owrt_web_email_settings/
-MODEL_FILES:=luasrc/model/cbi/owrt_web_email_settings/email_config.lua
-MODEL_FILES_DIR:=/usr/lib/lua/luci/model/cbi/owrt_web_email_settings/
-
-
-STATIC_FILES:=netping
+MODULE_NAME:=owrt_web_email_settings
+MODULE_FILES:=luasrc/*
+MODULE_FILES_DIR:=/usr/lib/lua/luci/
+STATIC_FILES:=netping/*
 STATIC_FILES_DIR:=/www/luci-static/netping/
-I18N_FILES:=i18n
+I18N_FILES:=i18n/*.lmo
 I18N_FILES_DIR:=/usr/lib/lua/luci/i18n/
+STATIC_CONFIG:=usr/share/rpcd/acl.d/*
+MODULE_CONFIG_DIR:=/usr/share/rpcd/acl.d/
 
 define Package/owrt-web-email-settings/install
 	$(INSTALL_DIR) $(1)$(MODULE_FILES_DIR)
 	$(CP) $(PKG_BUILD_DIR)/$(MODULE_FILES) $(1)$(MODULE_FILES_DIR)	
 	
-	$(INSTALL_DIR) $(1)$(MODEL_FILES_DIR)
-	$(CP) $(PKG_BUILD_DIR)/$(MODEL_FILES) $(1)$(MODEL_FILES_DIR)	
-	
 	$(INSTALL_DIR) $(1)$(STATIC_FILES_DIR)
-	$(CP) $(PKG_BUILD_DIR)/$(STATIC_FILES)/* $(1)$(STATIC_FILES_DIR)	
+	$(CP) $(PKG_BUILD_DIR)/$(STATIC_FILES) $(1)$(STATIC_FILES_DIR)	
+	
+	$(INSTALL_DIR) $(1)$(STATIC_CONFIG_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(STATIC_CONFIG) $(1)$(STATIC_CONFIG_DIR)	
 	
 	$(INSTALL_DIR) $(1)$(I18N_FILES_DIR)
-	$(CP) $(PKG_BUILD_DIR)/$(I18N_FILES)/*.lmo $(1)$(I18N_FILES_DIR)
+	$(CP) $(PKG_BUILD_DIR)/$(I18N_FILES) $(1)$(I18N_FILES_DIR)
 	
 endef
 
 define Package/owrt-web-email-settings/clean
-	rm -r $(1)$(MODULE_FILES_DIR)
-	rm -r $(1)$$(1)$(MODEL_FILES_DIR)
-	rm -r $(1)$(STATIC_FILES_DIR)$(PKG_NAME)s.*
-	rm -r $(1)$(I18N_FILES_DIR)$(PKG_NAME).*.lmo
+	rm -r $(1)$(MODULE_FILES_DIR)controller/$(MODULE_NAME)
+	rm -r $(1)$(MODULE_FILES_DIR)model/cbi/$(MODULE_NAME)
+	rm -r $(1)$(MODULE_FILES_DIR)view/$(MODULE_NAME)
+	rm -r $(1)$(STATIC_FILES_DIR)$(MODULE_NAME).*
+	rm -r $(1)$(I18N_FILES_DIR)$(MODULE_NAME).*.lmo
 endef
 
 
