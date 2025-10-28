@@ -35,23 +35,31 @@ MODULE_NAME := owrt_input_validate
 SRC_FILES_DIR := /root/usr/lib/lua
 SRC_AUTORUN_DIR := /root/etc/init.d
 SRC_BIN_DIR := /root/usr/bin
+SRC_CONFIG_DIR := /root/usr/share/rpcd/acl.d
 
 MODULE_FILES_DIR := /usr/lib/lua
 MODULE_INIT_DIR := /etc/init.d
 MODULE_BIN_DIR := /usr/libexec
 
+MODULE_CONFIG_DIR := /usr/share/rpcd/acl.d/
 
 
 define Package/owrt-input-validate/install
 
-	$(INSTALL_DIR) $(1)$(MODULE_FILES_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)$(SRC_FILES_DIR)/$(MODULE_NAME)/* $(1)$(MODULE_FILES_DIR)
+	$(INSTALL_DIR) $(1)$(MODULE_FILES_DIR)/$(MODULE_NAME)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)$(SRC_FILES_DIR)/$(MODULE_NAME)/* $(1)$(MODULE_FILES_DIR)/$(MODULE_NAME)
+
+	$(INSTALL_DIR) $(1)$(MODULE_INIT_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)$(SRC_AUTORUN_DIR)/* $(1)$(MODULE_INIT_DIR)
 
 	$(INSTALL_DIR) $(1)$(MODULE_BIN_DIR)
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)$(SRC_BIN_DIR)/* $(1)$(MODULE_BIN_DIR)
 	
 	$(INSTALL_DIR) $(1)$(MODULE_INIT_DIR)
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)$(SRC_AUTORUN_DIR)/* $(1)$(RUN_DIR)$(MODULE_INIT_DIR)
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)$(SRC_AUTORUN_DIR)/* $(1)$(MODULE_INIT_DIR)
+
+	$(INSTALL_DIR) $(1)$(MODULE_CONFIG_DIR)
+	$(CP) $(PKG_BUILD_DIR)$(SRC_CONFIG_DIR)/* $(1)$(MODULE_CONFIG_DIR)
 
 endef
 
@@ -59,6 +67,8 @@ define Package/owrt-input-validate/clean
 	rm -rf $(1)$(MODULE_FILES_DIR)/$(MODULE_NAME)
 	rm -f $(1)$(MODULE_INIT_DIR)/$(MODULE_NAME)
 	rm -f $(1)$(MODULE_BIN_DIR)/$(MODULE_NAME)
+	rm -f $(1)$(MODULE_INIT_DIR)/$(MODULE_NAME)
+
 
 endef
 

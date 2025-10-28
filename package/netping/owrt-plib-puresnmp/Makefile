@@ -22,7 +22,7 @@ define Package/owrt-plib-puresnmp
   TITLE:=PureSNMP and dependencies
   URL:=https://github.com/Netping/OWRT-PLIB-puresnmp
   MAINTAINER:=Michael Sadikov <info@netping.ru>
-  DEPENDS:=+owrt-plib-zipp owrt-plib-importlib-metadata owrt-plib-typing-extensions
+  DEPENDS:=+owrt-plib-zipp +owrt-plib-importlib-metadata +owrt-plib-typing-extensions
 endef
 
 define Package/owrt-plib-puresnmp/description
